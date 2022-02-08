@@ -1,14 +1,12 @@
 package com.odkmali.backendHub.model;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -31,4 +29,6 @@ public class Ecole implements Serializable {
     private String adresse_ecole;
     @NotNull
     private Long tel_ecole;
+    @Enumerated(EnumType.STRING)
+    private Etat etat = Etat.actif;
 }
