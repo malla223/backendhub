@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Eleve implements Serializable {
+public class Eleve{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

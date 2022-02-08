@@ -2,18 +2,15 @@ package com.odkmali.backendHub.model;
 
 import com.odkmali.backendHub.enumeration.Etat;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+@Data
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +25,8 @@ public class User implements Serializable {
     @NotNull
     private Long tel_user;
     private String photo_user;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
 

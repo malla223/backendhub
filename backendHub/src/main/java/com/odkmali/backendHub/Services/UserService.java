@@ -8,10 +8,12 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    public List<User>  getAllUser();
+    public User createUser(User user);
+    public List<User> getAllUser();
     public List<User> getUserByEtat(String etat);
     public User getUserById(Long id);
-    public String modifierUser(Long id, User user);
-    public void deleteUser(Long id);
+    public User modifierUser(Long id, User user);
+    void deleteUser(Long id);
+    void restaurerUser(Long id);
 
 }
