@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface UserRepo extends JpaRepository<User, Long> {
 
-    @Query(value = " SELECT u FROM User u WHERE u.etat='actif' ")
+    @Query(value = " SELECT u FROM User u WHERE u.etat=:etat ")
     public List<User> getAllUserByEtat(@Param("etat") String etat);
 
     @Query(value = " SELECT u FROM User u WHERE u.etat='actif' ")
