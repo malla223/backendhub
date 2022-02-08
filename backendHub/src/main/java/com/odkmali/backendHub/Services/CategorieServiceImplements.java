@@ -29,10 +29,12 @@ public class CategorieServiceImplements implements CategorieService{
 
 
     public Categorie getCatById(Long id) {
-        return categorieRepo.getById(id);
+        return categorieRepo.findById(id).get();
     }
 
     public Categorie modifierCat(Long id, Categorie cat) {
+        Categorie c = categorieRepo.findById(id).get();
+        c.setLibelle_cat(cat.getLibelle_cat());
         return categorieRepo.save(cat);
     }
 }
