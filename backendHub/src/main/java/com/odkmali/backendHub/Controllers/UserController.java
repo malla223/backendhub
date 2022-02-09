@@ -3,8 +3,13 @@ package com.odkmali.backendHub.Controllers;
 import com.odkmali.backendHub.Services.UserServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.User;
+import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -17,7 +22,15 @@ public class UserController {
 
     @PostMapping("/saveUser")
     @ResponseBody
-    public User createUser(@RequestBody User user) {
+    public User createUser(User user , @RequestParam("image")MultipartFile multipartFile)throws IOException {
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        user.setPhoto_user(fileName);
+
+        String uploadDir = "src/main/resources/Images/";
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
         return userServiceImplements.createUser(user);
     }
 
