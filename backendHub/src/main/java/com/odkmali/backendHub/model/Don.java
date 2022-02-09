@@ -20,7 +20,8 @@ public class Don {
     @NotNull
     private String libelle_don;
     @NotNull
-    private String niveau_don;
+    @ManyToOne
+    private Niveau niveau;
     @NotNull
     private String photo_don;
     @ManyToOne

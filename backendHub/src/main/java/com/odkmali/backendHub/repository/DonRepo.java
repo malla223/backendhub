@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.repository;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,7 @@ import java.util.List;
 public interface DonRepo extends JpaRepository<Don, Long> {
 
     @Query(value = " SELECT d FROM Don d WHERE d.etat=:etat ")
-    public List<Don> getAllDonByEtat(@Param("etat") String etat);
+    public List<Don> getAllDonByEtat(@Param("etat") Etat etat);
 
     @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' ")
     public List<Don> getAllDonConfirmer();
@@ -26,17 +27,22 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     public List<Don> getAllDonEncours();
 
     @Query(value = " UPDATE Don SET etat='attente' WHERE id_don=:id_don")
+    @Modifying
     public void attenteDon(@Param("id_don")Long id);
 
     @Query(value = " UPDATE Don SET etat='confirmer' WHERE id_don=:id_don")
+    @Modifying
     public void confirmerDon(@Param("id_don")Long id);
 
     @Query(value = " UPDATE Don SET etat='encours' WHERE id_don=:id_don")
+    @Modifying
     public void encoursDon(@Param("id_don")Long id);
 
     @Query(value = " UPDATE Don SET etat='inactif' WHERE id_don=:id_don")
+    @Modifying
     public void annulerDon(@Param("id_don")Long id);
 
     @Query(value = " UPDATE Don SET etat='inactif' WHERE id_don=:id_don")
+    @Modifying
     public void deleteDon(@Param("id_don")Long id);
 }

@@ -25,8 +25,6 @@ public class User {
     @NotNull
     private Long tel_user;
     private String photo_user;
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
 

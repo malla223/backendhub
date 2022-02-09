@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.Services;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public interface DonService {
     public List<Don> getAllDonConfirmer();
     public List<Don> getAllDonAttente();
     public List<Don> getAllDonEncous();
-    public List<Don> getDonByEtat(String etat);
+    public List<Don> getDonByEtat(Etat etat);
     public Don getDonById(Long id);
     public Don modifierDon(Long id, Don don);
     public void annulerDon(Long id);

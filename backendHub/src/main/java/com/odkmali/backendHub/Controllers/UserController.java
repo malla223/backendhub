@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.Controllers;
 
 import com.odkmali.backendHub.Services.UserServiceImplements;
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class UserController {
 
     @GetMapping("/getUserByEtat/{etat}")
     @ResponseBody
-    public List<User> getUserByEtat(@PathVariable("etat") String etat) {
+    public List<User> getUserByEtat(@PathVariable("etat") Etat etat) {
         return userServiceImplements.getUserByEtat(etat);
     }
 

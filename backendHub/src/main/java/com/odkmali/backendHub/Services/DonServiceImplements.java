@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.Services;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.repository.DonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +36,23 @@ public class DonServiceImplements implements DonService{
     }
 
     @Override
-    public List<Don> getDonByEtat(String etat) {
+    public List<Don> getDonByEtat(Etat etat) {
         return donRepo.getAllDonByEtat(etat);
     }
 
     @Override
     public Don getDonById(Long id) {
-        return donRepo.getById(id);
+        return donRepo.findById(id).get();
     }
 
     @Override
     public Don modifierDon(Long id, Don don) {
-        Don d = donRepo.getById(id);
+        Don d = donRepo.findById(id).get();
         d.setCategorie(don.getCategorie());
-        d.setNiveau_don(don.getNiveau_don());
+        d.setNiveau(don.getNiveau());
         d.setLibelle_don(don.getLibelle_don());
+        d.setEcole(don.getEcole());
+        d.setEcole(don.getEcole());
         d.setPhoto_don(don.getPhoto_don());
         return donRepo.save(don);
     }

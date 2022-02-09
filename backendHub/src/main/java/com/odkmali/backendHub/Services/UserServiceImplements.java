@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.Services;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,17 @@ public class UserServiceImplements implements UserService{
     }
 
 
-    public List<User> getUserByEtat(String etat) {
+    public List<User> getUserByEtat(Etat etat) {
         return userRepo.getAllUserByEtat(etat);
     }
 
 
     public User getUserById(Long id) {
-        return userRepo.getUserById(id);
+        return userRepo.findById(id).get();
     }
 
     public User modifierUser(Long id, User user) {
-        User u = userRepo.getUserById(id);
+        User u = userRepo.findById(id).get();
         u.setNom_user(user.getNom_user());
         u.setPrenom_user(user.getPrenom_user());
         u.setLogin_user(user.getLogin_user());

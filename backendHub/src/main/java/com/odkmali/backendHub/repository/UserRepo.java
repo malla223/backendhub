@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.repository;
 
+import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query(value = " SELECT u FROM User u WHERE u.etat=:etat ")
-    public List<User> getAllUserByEtat(@Param("etat") String etat);
+    public List<User> getAllUserByEtat(@Param("etat") Etat etat);
 
     @Query(value = " SELECT u FROM User u WHERE u.etat='actif' ")
     public List<User> getAllUser();
