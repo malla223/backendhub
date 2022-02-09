@@ -9,14 +9,15 @@ import java.util.List;
 public interface DonService {
 
     public Don saveDon(Don don);
-    public List<Don> getAllDon();
     public List<Don> getAllDonConfirmer();
-    public List<Don> getAllDonInactif();
     public List<Don> getAllDonAttente();
     public List<Don> getAllDonEncous();
     public List<Don> getDonByEtat(String etat);
     public Don getDonById(Long id);
     public Don modifierDon(Long id, Don don);
-    void deleteDon(Long id);
-    public Don restaurerDon(Long id);
+    public void annulerDon(Long id);
+    public void confirmerDon(Long id);
+    public void attenteDon(Long id);
+    public void encoursDon(Long id);
+    public void deleteDon(Long id);
  }
