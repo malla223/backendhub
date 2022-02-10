@@ -42,8 +42,7 @@ public class UserServiceImplements implements UserService{
 
     public User modifierUser(Long id, User user) {
         User u = userRepo.findById(id).get();
-        u.setNom_user(user.getNom_user());
-        u.setPrenom_user(user.getPrenom_user());
+        u.setNom_complet(user.getNom_complet());
         u.setLogin_user(user.getLogin_user());
         u.setAdresse_user(user.getAdresse_user());
         u.setTel_user(user.getTel_user());
