@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategorieServiceImplements implements CategorieService{
@@ -14,7 +15,14 @@ public class CategorieServiceImplements implements CategorieService{
     CategorieRepo categorieRepo;
 
     public Categorie saveCat(Categorie cat) {
-        return categorieRepo.save(cat);
+        Optional<Categorie> optCat = categorieRepo.findCategorie(cat.getLibelle_cat());
+
+        if(optCat.isPresent()){
+            System.out.println("Cette categorie existe déjà...");
+        }else{
+            categorieRepo.save(cat);
+        }
+        return (cat);
     }
 
 

@@ -16,5 +16,6 @@ public interface UserService {
     public User modifierUser(Long id, User user);
     void deleteUser(Long id);
     void restaurerUser(Long id);
+    User authUser(String login, String password);
 
 }

@@ -68,4 +68,9 @@ public class UserController {
     public void restaurerUser(@PathVariable("id") Long id) {
         userServiceImplements.restaurerUser(id);
     }
+
+    @GetMapping("/auth/{login}/{password}")
+    public User authUser(@PathVariable String login, @PathVariable String password) {
+        return userServiceImplements.authUser(login, password);
+    }
 }

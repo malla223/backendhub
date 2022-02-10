@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NiveauServiceImplements implements NiveauService{
@@ -15,7 +16,13 @@ public class NiveauServiceImplements implements NiveauService{
 
     @Override
     public Niveau saveNiveau(Niveau niveau) {
-        return niveauRepo.save(niveau);
+        Optional<Niveau> optNiveau = niveauRepo.findNiveau(niveau.getLibelle_niveau());
+        if(optNiveau.isPresent()){
+            System.out.println("Ce niveau existe déjà");
+        }else{
+            niveauRepo.save(niveau);
+        }
+        return (niveau);
     }
 
     @Override
