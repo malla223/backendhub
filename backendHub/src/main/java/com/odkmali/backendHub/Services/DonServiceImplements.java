@@ -54,6 +54,7 @@ public class DonServiceImplements implements DonService{
         d.setEcole(don.getEcole());
         d.setEcole(don.getEcole());
         d.setPhoto_don(don.getPhoto_don());
+        d.setDescription_don(don.getDescription_don());
         return donRepo.save(don);
     }
 

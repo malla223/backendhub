@@ -27,11 +27,12 @@ public class UserController {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         user.setPhoto_user(fileName);
 
-        String uploadDir = "src/main/resources/Images/";
+        User saveuser = userServiceImplements.createUser(user);
+        String uploadDir = "src/main/resources/Images/" +saveuser.getId_user();
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
-        return userServiceImplements.createUser(user);
+        return (user);
     }
 
     @GetMapping("/getAllUser")

@@ -24,6 +24,7 @@ public class DonController {
 
     @GetMapping("/getDonConfirmer")
     @ResponseBody
+    @CrossOrigin("*")
     public List<Don> getAllDonConfirmer(){
         return donServiceImplements.getAllDonConfirmer();
     }
