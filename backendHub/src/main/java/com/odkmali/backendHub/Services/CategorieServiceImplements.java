@@ -43,6 +43,6 @@ public class CategorieServiceImplements implements CategorieService{
     public Categorie modifierCat(Long id, Categorie cat) {
         Categorie c = categorieRepo.findById(id).get();
         c.setLibelle_cat(cat.getLibelle_cat());
-        return categorieRepo.save(cat);
+        return categorieRepo.save(c);
     }
 }

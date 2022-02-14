@@ -44,6 +44,6 @@ public class NiveauServiceImplements implements NiveauService{
     public Niveau modifierNiveau(Long id, Niveau niveau) {
         Niveau n = niveauRepo.findById(id).get();
         n.setLibelle_niveau(niveau.getLibelle_niveau());
-        return niveauRepo.save(niveau);
+        return niveauRepo.save(n);
     }
 }

@@ -2,6 +2,7 @@ package com.odkmali.backendHub.Controllers;
 
 import com.odkmali.backendHub.Services.DemandeDonServiceImplements;
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +42,11 @@ public class DemandeDonController {
     @GetMapping("/annulerD/{id}")
     public void annulerDemande(@PathVariable("id") Long id) {
         demandeDonServiceImplements.annulerDemande(id);
+    }
+
+    @GetMapping("/getAllDemandeUser/{id_user}")
+    @ResponseBody
+    public List<DemandeDon> getDemandeByUser(@PathVariable("id_user") User user) {
+        return demandeDonServiceImplements.getDemandeByUser(user);
     }
 }

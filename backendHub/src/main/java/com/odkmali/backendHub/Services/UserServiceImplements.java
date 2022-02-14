@@ -5,7 +5,14 @@ import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +22,7 @@ public class UserServiceImplements implements UserService{
     @Autowired
     UserRepo userRepo;
 
-    public User createUser(User user) {
+    public User createUser(User user, @RequestParam("image") MultipartFile photo) throws IOException{
         Optional<User> optionalUser = this.userRepo.findUser(user.getLogin_user());
 
         if(optionalUser.isPresent())
@@ -37,7 +44,7 @@ public class UserServiceImplements implements UserService{
 
 
     public User getUserById(Long id) {
-        return userRepo.findById(id).get();
+        return userRepo.getUserById(id);
     }
 
     public User modifierUser(Long id, User user) {
@@ -46,8 +53,9 @@ public class UserServiceImplements implements UserService{
         u.setLogin_user(user.getLogin_user());
         u.setAdresse_user(user.getAdresse_user());
         u.setTel_user(user.getTel_user());
+        u.setPassword_user(user.getPassword_user());
         u.setPhoto_user(user.getPhoto_user());
-        return userRepo.save(user);
+        return userRepo.save(u);
     }
 
 
@@ -61,5 +69,14 @@ public class UserServiceImplements implements UserService{
 
     public User authUser(String login, String password) {
         return userRepo.getUserByLoginAndPassword(login, password);
+    }
+
+
+    public byte[] getPhoto(Long id) throws IOException {
+        User u = userRepo.getUserById(id);
+        String iconPhoto = u.getPhoto_user();
+        File file = new File ("src/main/resources/Images/" + u.getId_user() + "/" + iconPhoto);
+        Path path = Paths.get(file.toURI());
+        return Files.readAllBytes(path);
     }
 }

@@ -29,4 +29,6 @@ public class DemandeDon {
     private Etat etat = Etat.attente;
     @OneToOne
     private Don don;
+    @OneToOne
+    private User user;
 }

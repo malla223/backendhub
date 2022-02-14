@@ -2,6 +2,7 @@ package com.odkmali.backendHub.repository;
 
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,9 @@ public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente'")
     public List<DemandeDon> getDemandeDonAttente();
+
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente' AND d.user=:user")
+    public List<DemandeDon> getDemandeDonByUser(@Param("user")User user);
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer'")
     public List<DemandeDon> getDemandeConfirmer();

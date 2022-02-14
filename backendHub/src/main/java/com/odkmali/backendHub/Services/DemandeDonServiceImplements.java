@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.DemandeDonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
     public void annulerDemande(Long id) {
         demandeDonRepo.annulerDemande(id);
+    }
+
+    public List<DemandeDon> getDemandeByUser(User user) {
+        return demandeDonRepo.getDemandeDonByUser(user);
     }
 }
