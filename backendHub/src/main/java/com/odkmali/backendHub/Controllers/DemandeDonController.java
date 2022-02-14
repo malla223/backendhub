@@ -5,6 +5,8 @@ import com.odkmali.backendHub.model.DemandeDon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/don")
@@ -17,5 +19,27 @@ public class DemandeDonController {
     @ResponseBody
     public DemandeDon faireDemande(@RequestBody DemandeDon demandeDon) {
         return demandeDonServiceImplements.faireDemande(demandeDon);
+    }
+
+    @GetMapping("/getDemandeAttente")
+    @ResponseBody
+    public List<DemandeDon> getDemandeDonAttente() {
+        return demandeDonServiceImplements.getDemandeDonAttente();
+    }
+
+    @GetMapping("/getDemandeConfirmer")
+    @ResponseBody
+    public List<DemandeDon> getDemandeConfirmer() {
+        return demandeDonServiceImplements.getDemandeConfirmer();
+    }
+
+    @GetMapping("/confirmerD/{id}")
+    public void confirmerDemande(@PathVariable("id") Long id) {
+        demandeDonServiceImplements.confirmerDemande(id);
+    }
+
+    @GetMapping("/annulerD/{id}")
+    public void annulerDemande(@PathVariable("id") Long id) {
+        demandeDonServiceImplements.annulerDemande(id);
     }
 }

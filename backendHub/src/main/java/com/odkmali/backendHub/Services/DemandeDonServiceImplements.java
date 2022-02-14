@@ -5,6 +5,8 @@ import com.odkmali.backendHub.repository.DemandeDonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DemandeDonServiceImplements implements DemandeDonService{
 
@@ -13,5 +15,25 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
     public DemandeDon faireDemande(DemandeDon demandeDon) {
         return demandeDonRepo.save(demandeDon);
+    }
+
+
+    public List<DemandeDon> getDemandeDonAttente() {
+        return demandeDonRepo.getDemandeDonAttente();
+    }
+
+
+    public List<DemandeDon> getDemandeConfirmer() {
+        return demandeDonRepo.getDemandeConfirmer();
+    }
+
+
+    public void confirmerDemande(Long id) {
+        demandeDonRepo.confirmerDemandeDon(id);
+    }
+
+
+    public void annulerDemande(Long id) {
+        demandeDonRepo.annulerDemande(id);
     }
 }
