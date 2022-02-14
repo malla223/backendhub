@@ -5,7 +5,10 @@ import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.repository.DonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -16,7 +19,7 @@ public class DonServiceImplements implements DonService{
     DonRepo donRepo;
 
     @Override
-    public Don saveDon(Don don) {
+    public Don saveDon(Don don, @RequestParam("image")MultipartFile photo)  throws IOException {
         return donRepo.save(don);
     }
 

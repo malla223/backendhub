@@ -3,13 +3,15 @@ package com.odkmali.backendHub.Services;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
 public interface DonService {
 
-    public Don saveDon(Don don);
+    public Don saveDon(Don don, MultipartFile photo) throws IOException;
     public List<Don> getAllDonConfirmer();
     public List<Don> getAllDonAttente();
     public List<Don> getAllDonEncous();

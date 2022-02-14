@@ -1,11 +1,18 @@
 package com.odkmali.backendHub.Controllers;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.odkmali.backendHub.Services.DonServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
+import com.odkmali.backendHub.model.User;
+import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,9 +24,19 @@ public class DonController {
     DonServiceImplements donServiceImplements;
 
     @PostMapping("/saveDon")
-    @ResponseBody
-    public Don saveDon(@RequestBody Don don){
-        return donServiceImplements.saveDon(don);
+    public Don saveDon(@RequestParam("data") String don, @RequestParam("image")MultipartFile photo)
+            throws JsonParseException, JsonMappingException, Exception {
+
+        String fileName = StringUtils.cleanPath(photo.getOriginalFilename());
+        Don d = new Don();
+        d.setPhoto_don(fileName);
+
+        Don savedon = donServiceImplements.saveDon(d, photo);
+        String uploadDir = "src/main/resources/Images/" +savedon.getId_don();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, photo);
+
+        return (d);
     }
 
     @GetMapping("/getDonConfirmer")
