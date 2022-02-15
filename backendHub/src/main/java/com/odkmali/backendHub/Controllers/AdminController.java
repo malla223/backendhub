@@ -53,5 +53,10 @@ public class AdminController {
     public void restaurerAdmin(@PathVariable("id") Long id) {
         adminServiceImplements.restaurerAdmin(id);
     }
+    @PutMapping("/modifierAdmin/{id}")
+    @ResponseBody
+    public Admin modifierAdmin(@PathVariable("id") Long id, @RequestBody Admin admin) {
+        return adminServiceImplements.modifierAdmin(id, admin);
+}
 
 }

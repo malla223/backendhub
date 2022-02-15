@@ -3,6 +3,7 @@ package com.odkmali.backendHub.Services;
 import com.odkmali.backendHub.enumeration.AdminEnum;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Admin;
+import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,17 @@ public class AdminServiceImplements implements AdminService{
     public void restaurerAdmin(Long id) {
         adminRepo.restaurerAdmin(id);
 
+    }
+    public Admin modifierAdmin(Long id, Admin admin) {
+        Admin a = adminRepo.findById(id).get();
+        a.setNom_admin(admin.getNom_admin());
+        a.setPrenom_admin(admin.getPrenom_admin());
+        a.setLogin_admin(admin.getLogin_admin());
+        a.setEmail_admin(admin.getEmail_admin());
+        a.setTel_admin(admin.getTel_admin());
+        a.setPhoto_admin(admin.getPhoto_admin());
+        a.setType(admin.getType());
+        return adminRepo.save(a);
     }
 
 
