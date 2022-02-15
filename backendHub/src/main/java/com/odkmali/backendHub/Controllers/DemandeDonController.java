@@ -49,4 +49,10 @@ public class DemandeDonController {
     public List<DemandeDon> getDemandeByUser(@PathVariable("id_user") User user) {
         return demandeDonServiceImplements.getDemandeByUser(user);
     }
+
+    @GetMapping("/getDemandeById/{id}")
+    @ResponseBody
+    public DemandeDon getDemandeByid(@PathVariable("id") Long id) {
+        return demandeDonServiceImplements.getDemandeByid(id);
+    }
 }

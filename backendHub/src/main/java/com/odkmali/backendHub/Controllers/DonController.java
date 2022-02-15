@@ -101,4 +101,10 @@ public class DonController {
         donServiceImplements.deleteDon(id);
     }
 
+    @GetMapping("/getDonByUser/{id_user}")
+    @ResponseBody
+    public List<Don> getDonByUser(@PathVariable("id_user") User user) {
+        return donServiceImplements.getDonByUser(user);
+    }
+
 }

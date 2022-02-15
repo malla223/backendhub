@@ -15,4 +15,5 @@ public interface DemandeDonService {
     public void confirmerDemande(Long id);
     public void annulerDemande(Long id);
     public List<DemandeDon> getDemandeByUser(User user);
+    public DemandeDon getDemandeByid(Long id);
 }

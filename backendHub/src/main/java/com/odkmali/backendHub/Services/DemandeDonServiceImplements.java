@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DemandeDonServiceImplements implements DemandeDonService{
@@ -15,7 +16,14 @@ public class DemandeDonServiceImplements implements DemandeDonService{
     DemandeDonRepo demandeDonRepo;
 
     public DemandeDon faireDemande(DemandeDon demandeDon) {
-        return demandeDonRepo.save(demandeDon);
+        Optional<DemandeDon> optionalDemandeDon = demandeDonRepo.findDemandeByDon(demandeDon.getUser(), demandeDon.getDon());
+
+        if(optionalDemandeDon.isPresent()){
+            System.out.println("Vous pouvez pas faire la demande du meme don");
+        }else{
+            demandeDonRepo.save(demandeDon);
+        }
+        return (demandeDon);
     }
 
 
@@ -41,4 +49,10 @@ public class DemandeDonServiceImplements implements DemandeDonService{
     public List<DemandeDon> getDemandeByUser(User user) {
         return demandeDonRepo.getDemandeDonByUser(user);
     }
+
+
+    public DemandeDon getDemandeByid(Long id) {
+        return demandeDonRepo.getDemandeAttenteById(id);
+    }
+
 }

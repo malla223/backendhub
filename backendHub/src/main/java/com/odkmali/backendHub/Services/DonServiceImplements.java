@@ -2,6 +2,7 @@ package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
+import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.DonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,10 +55,8 @@ public class DonServiceImplements implements DonService{
         d.setCategorie(don.getCategorie());
         d.setNiveau(don.getNiveau());
         d.setLibelle_don(don.getLibelle_don());
-        d.setEcole(don.getEcole());
-        d.setEcole(don.getEcole());
         d.setPhoto_don(don.getPhoto_don());
-        d.setDescription_don(don.getDescription_don());
+        d.setUser(don.getUser());
         return donRepo.save(d);
     }
 
@@ -84,5 +83,10 @@ public class DonServiceImplements implements DonService{
     @Override
     public void deleteDon(Long id) {
         donRepo.deleteDon(id);
+    }
+
+    @Override
+    public List<Don> getDonByUser(User user) {
+        return donRepo.getDonByUser(user);
     }
 }

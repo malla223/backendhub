@@ -20,16 +20,14 @@ public class Don {
     @NotNull
     private String libelle_don;
     @NotNull
-    private String description_don;
-    @NotNull
     @ManyToOne
     private Niveau niveau;
     @NotNull
     private String photo_don;
-    @ManyToOne
-    private Ecole ecole;
-    @ManyToOne
-    private Eleve eleve;
+   // @ManyToOne
+    //private Ecole ecole;
+    //@ManyToOne
+    //private Eleve eleve;
     @ManyToOne
     private User user;
     @ManyToOne
