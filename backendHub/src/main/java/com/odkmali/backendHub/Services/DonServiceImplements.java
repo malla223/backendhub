@@ -9,7 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -88,5 +92,14 @@ public class DonServiceImplements implements DonService{
     @Override
     public List<Don> getDonByUser(User user) {
         return donRepo.getDonByUser(user);
+    }
+
+    @Override
+    public byte[] getPhoto(Long id) throws IOException {
+        Don d = donRepo.getById(id);
+        String iconPhoto = d.getPhoto_don();
+        File file = new File ("src/main/resources/Images/" + d.getId_don() + "/" + iconPhoto);
+        Path path = Paths.get(file.toURI());
+        return Files.readAllBytes(path);
     }
 }

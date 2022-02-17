@@ -8,6 +8,7 @@ import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -105,6 +106,11 @@ public class DonController {
     @ResponseBody
     public List<Don> getDonByUser(@PathVariable("id_user") User user) {
         return donServiceImplements.getDonByUser(user);
+    }
+
+    @GetMapping(value = "/getPhoto/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public byte[] getPhoto(@PathVariable("id") Long id) throws IOException {
+        return donServiceImplements.getPhoto(id);
     }
 
 }

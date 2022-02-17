@@ -4,6 +4,7 @@ import com.odkmali.backendHub.model.DemandeDon;
 import com.odkmali.backendHub.model.User;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
