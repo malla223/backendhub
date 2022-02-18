@@ -34,6 +34,7 @@ public class AdminController {
     public Admin getAdminById(@PathVariable("id") Long id) {
         return adminServiceImplements.getAdminById(id);
     }
+
     @GetMapping("/getAdminByEtat/{etat}")
     public List<Admin> getAdminByEtat(@PathVariable("etat") Etat etat) {
         return adminServiceImplements.getAdminByEtat(etat);

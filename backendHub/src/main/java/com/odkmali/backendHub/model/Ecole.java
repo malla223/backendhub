@@ -28,6 +28,7 @@ public class Ecole {
     private String adresse_ecole;
     @NotNull
     private Long tel_ecole;
+    private String photo_ecole;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
 }
