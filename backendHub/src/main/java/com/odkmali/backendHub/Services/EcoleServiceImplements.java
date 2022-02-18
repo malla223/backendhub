@@ -39,7 +39,6 @@ public class EcoleServiceImplements implements EcoleService{
         e.setLogin_ecole(ecole.getLogin_ecole());
         e.setPassword_ecole(ecole.getPassword_ecole());
         e.setSite_ecole(ecole.getSite_ecole());
-        e.setPhoto_ecole(ecole.getPhoto_ecole());
         e.setTel_ecole(ecole.getTel_ecole());
         return ecoleRepo.save(e);
     }

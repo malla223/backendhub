@@ -40,4 +40,7 @@ public interface AdminRepo extends JpaRepository<Admin, Long> {
     @Query(value = "SELECT a FROM Admin a WHERE a.login_admin=:login_admin")
     Optional<Admin> findAdmin(@Param("login_admin") String login_admin);
 
+    @Query(value = "SELECT a FROM Admin a WHERE a.login_admin=:login_admin AND a.password_admin=:password_admin")
+    Admin getAdminByLoginAndPassword(@Param("login_admin")String login_admin, @Param("password_admin")String password_admin);
+
 }
