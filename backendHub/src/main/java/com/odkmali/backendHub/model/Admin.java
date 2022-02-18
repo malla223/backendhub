@@ -26,13 +26,15 @@ public class Admin {
     @NotNull
     private String password_admin;
     private String email_admin;
+    @Column(unique=true)
     private Long tel_admin;
     @Enumerated(EnumType.STRING)
     @NotNull
     private AdminEnum type;
 
-    private String photo;
+    private String photo_admin;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
+
 
 }
