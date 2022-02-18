@@ -14,4 +14,6 @@ public interface EcoleService {
     public void deleteEcole (Long id);
     public void restaurerEcole (Long id);
     public Ecole getEcoleById(Long id);
+    public Ecole saveEcole(Ecole ecole);
+    public Ecole modifierEcole(Long id , Ecole ecole);
 }

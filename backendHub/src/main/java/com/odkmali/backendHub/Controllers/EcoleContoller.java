@@ -18,7 +18,9 @@ public class EcoleContoller {
 
     @PostMapping("/saveEcole")
     @ResponseBody
-    public Ecole findEcole(@RequestBody Ecole ecole){return ecoleServiceImplements.SaveEcole(ecole);}
+    public Ecole saveEcole(@RequestBody Ecole ecole){
+        return ecoleServiceImplements.saveEcole(ecole);
+    }
 
     @GetMapping("/getEcoleByEtat/{etat}")
     @ResponseBody
