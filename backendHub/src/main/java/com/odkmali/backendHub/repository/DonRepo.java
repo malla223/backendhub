@@ -49,4 +49,7 @@ public interface DonRepo extends JpaRepository<Don, Long> {
 
     @Query(value = "SELECT d FROM Don d WHERE d.etat='attente' AND d.user=:user")
     public List<Don> getDonByUser(@Param("user")User user);
+
+    @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='confirmer'")
+    Integer nbreDonConfirmer();
 }

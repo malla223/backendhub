@@ -92,4 +92,8 @@ public class AdminServiceImplements implements AdminService{
         return (admin);
     }
 
+    public Integer nombreAdmin() {
+        return adminRepo.nombreAdmin();
+    }
+
 }

@@ -83,4 +83,9 @@ public class AdminController {
         return adminServiceImplements.authAdmin(login_admin, password_admin);
     }
 
+    @GetMapping("/nombreAdmin")
+    public Integer nombreAdmin() {
+        return adminServiceImplements.nombreAdmin();
+    }
+
 }

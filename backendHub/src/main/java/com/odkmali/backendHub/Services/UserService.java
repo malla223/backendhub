@@ -20,5 +20,6 @@ public interface UserService {
     void restaurerUser(Long id);
     User authUser(String login, String password);
     public byte[] getPhoto(Long id) throws IOException;
+    public Integer nbreUser();
 
 }

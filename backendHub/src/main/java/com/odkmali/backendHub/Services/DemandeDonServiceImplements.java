@@ -1,17 +1,11 @@
 package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.model.DemandeDon;
-import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.DemandeDonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +53,10 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
     public DemandeDon getDemandeByid(Long id) {
         return demandeDonRepo.getDemandeAttenteById(id);
+    }
+
+    public Integer nbreDemandeRecu() {
+        return demandeDonRepo.nombreDonRecu();
     }
 
 }

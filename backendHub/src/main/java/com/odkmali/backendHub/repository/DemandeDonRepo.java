@@ -40,4 +40,7 @@ public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.don=:don AND d.user=:user")
     Optional<DemandeDon> findDemandeByDon(@Param("user") User user, @Param("don") Don don);
+
+    @Query(value = "SELECT COUNT (*) FROM DemandeDon WHERE etat='confirmer'")
+    Integer nombreDonRecu();
 }

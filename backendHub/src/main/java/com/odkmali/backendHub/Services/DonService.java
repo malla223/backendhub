@@ -26,4 +26,5 @@ public interface DonService {
     public void deleteDon(Long id);
     public List<Don> getDonByUser(User user);
     public byte[] getPhoto(Long id) throws IOException;
+    public Integer nbreDonC();
  }

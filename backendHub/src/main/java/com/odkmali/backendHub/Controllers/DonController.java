@@ -113,4 +113,9 @@ public class DonController {
         return donServiceImplements.getPhoto(id);
     }
 
+    @GetMapping("/nbreDonC")
+    public Integer nbreDonC() {
+        return donServiceImplements.nbreDonC();
+    }
+
 }

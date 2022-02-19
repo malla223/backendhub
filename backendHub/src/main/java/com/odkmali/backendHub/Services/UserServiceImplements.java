@@ -79,4 +79,8 @@ public class UserServiceImplements implements UserService{
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }
+
+    public Integer nbreUser() {
+        return userRepo.nombreUser();
+    }
 }

@@ -37,4 +37,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
     @Modifying
     public void restaurerUser(@Param("id_user") Long id);
 
+    @Query(value = "SELECT COUNT (*) FROM User WHERE etat='actif'")
+    public Integer nombreUser();
+
 }

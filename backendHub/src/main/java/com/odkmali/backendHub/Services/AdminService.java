@@ -22,4 +22,5 @@ public interface AdminService {
     public Admin authAdmin(String login_admin, String password_admin);
     public byte[] getPhoto(Long id) throws IOException;
     public Admin saveAdmin(Admin admin, MultipartFile photo) throws IOException;
+    public Integer nombreAdmin();
 }

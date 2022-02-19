@@ -102,4 +102,9 @@ public class DonServiceImplements implements DonService{
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }
+
+
+    public Integer nbreDonC() {
+        return donRepo.nbreDonConfirmer();
+    }
 }

@@ -55,4 +55,9 @@ public class DemandeDonController {
     public DemandeDon getDemandeByid(@PathVariable("id") Long id) {
         return demandeDonServiceImplements.getDemandeByid(id);
     }
+
+    @GetMapping("/nbreDonRecu")
+    public Integer nbreDemandeRecu() {
+        return demandeDonServiceImplements.nbreDemandeRecu();
+    }
 }

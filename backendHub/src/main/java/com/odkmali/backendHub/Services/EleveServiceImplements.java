@@ -10,38 +10,50 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EleveServiceImplements {
+public class EleveServiceImplements implements EleveService{
 
     @Autowired
     EleveRepo eleveRepo;
 
-    public List<Eleve> getAllEleve(){
-        return eleveRepo.getAllEleve();
-    }
-
-    public List<Eleve>getEleveByEtat(Etat etat){
+    @Override
+    public List<Eleve> getEleveByEtat(Etat etat) {
         return eleveRepo.getEleveByEtat(etat);
     }
 
-    public  Eleve getEleveById(Long id){
+    @Override
+    public Eleve getEleveById(Long id) {
         return eleveRepo.getEleveById(id);
     }
 
-    public void deleteEleve(Long id){
+    @Override
+    public List<Eleve> getAllEleve() {
+        return eleveRepo.getAllEleve();
+    }
+
+    @Override
+    public void deleteEleve(Long id) {
         eleveRepo.deleteEleve(id);
     }
-    public void restaurerEleve(Long id){
+
+    @Override
+    public void restaurerEleve(Long id) {
         eleveRepo.restaurerEleve(id);
     }
 
-    public Eleve modifierEleve (Long id,Eleve eleve) {
-        Eleve e = eleveRepo.findById(id).get();
+    @Override
+    public Eleve saveEleve(Eleve eleve) {
+        return eleveRepo.save(eleve);
+    }
+
+    @Override
+    public Eleve modifierEleve(Long id, Eleve eleve) {
+        Eleve e = eleveRepo.getEleveById(id);
         e.setNom_eleve(eleve.getNom_eleve());
-        e.setPrenom_eleve(eleve.getPrenom_eleve());
         e.setClasse_eleve(eleve.getClasse_eleve());
-        e.setNomcomplet_parent(eleve.getNomcomplet_parent());
-        e.setContact_parent(eleve.getContact_parent());
+        e.setPrenom_eleve(eleve.getPrenom_eleve());
         e.setEcole(eleve.getEcole());
+        e.setContact_parent(eleve.getContact_parent());
+        e.setNomcomplet_parent(eleve.getNomcomplet_parent());
         return eleveRepo.save(e);
     }
 }

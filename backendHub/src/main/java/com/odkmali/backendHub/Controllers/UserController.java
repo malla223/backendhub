@@ -83,4 +83,9 @@ public class UserController {
     public byte[] getPhoto(@PathVariable("id") Long id) throws IOException {
         return userServiceImplements.getPhoto(id);
     }
+
+    @GetMapping("/nombreUser")
+    public Integer nbreUser() {
+        return userServiceImplements.nbreUser();
+    }
 }
