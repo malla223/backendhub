@@ -10,10 +10,12 @@ import com.odkmali.backendHub.model.Admin;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -25,6 +27,7 @@ public class AdminController {
     AdminServiceImplements adminServiceImplements;
 
     @PostMapping("/saveAdmin")
+    @ResponseBody
     public Admin SaveAdmin(@RequestParam("data") String admin , @RequestParam("image") MultipartFile photo)
             throws JsonParseException, JsonMappingException, Exception{
 
@@ -86,6 +89,21 @@ public class AdminController {
     @GetMapping("/nombreAdmin")
     public Integer nombreAdmin() {
         return adminServiceImplements.nombreAdmin();
+    }
+
+    @GetMapping("/nombreAdminH")
+    public Integer nombreAdminH() {
+        return adminServiceImplements.nombreAdminH();
+    }
+
+    @GetMapping("/nombreAdminF")
+    public Integer nombreAdminF() {
+        return adminServiceImplements.nombreAdminF();
+    }
+
+    @GetMapping(value = "/getPhoto/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public byte[] getPhoto(@PathVariable("id") Long id) throws IOException {
+        return adminServiceImplements.getPhoto(id);
     }
 
 }

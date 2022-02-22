@@ -46,4 +46,10 @@ public interface AdminRepo extends JpaRepository<Admin, Long> {
     @Query(value = "SELECT COUNT(*) FROM Admin WHERE etat='actif'")
     public Integer nombreAdmin();
 
+    @Query(value = "SELECT COUNT(*) FROM Admin WHERE etat='actif' AND genre='Homme'")
+    public Integer nombreAdminHomme();
+
+    @Query(value = "SELECT COUNT(*) FROM Admin WHERE etat='actif' AND genre='Femme'")
+    public Integer nombreAdminFemme();
+
 }

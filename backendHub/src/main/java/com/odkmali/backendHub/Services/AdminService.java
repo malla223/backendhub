@@ -23,4 +23,6 @@ public interface AdminService {
     public byte[] getPhoto(Long id) throws IOException;
     public Admin saveAdmin(Admin admin, MultipartFile photo) throws IOException;
     public Integer nombreAdmin();
+    public Integer nombreAdminH();
+    public Integer nombreAdminF();
 }

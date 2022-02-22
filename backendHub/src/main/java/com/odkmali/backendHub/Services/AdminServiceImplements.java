@@ -70,6 +70,8 @@ public class AdminServiceImplements implements AdminService{
         a.setTel_admin(admin.getTel_admin());
         a.setPhoto_admin(admin.getPhoto_admin());
         a.setType(admin.getType());
+        a.setGenre(admin.getGenre());
+        a.setPassword_admin(admin.getPassword_admin());
         return adminRepo.save(a);
     }
 
@@ -94,6 +96,16 @@ public class AdminServiceImplements implements AdminService{
 
     public Integer nombreAdmin() {
         return adminRepo.nombreAdmin();
+    }
+
+
+    public Integer nombreAdminH() {
+        return adminRepo.nombreAdminHomme();
+    }
+
+
+    public Integer nombreAdminF() {
+        return adminRepo.nombreAdminFemme();
     }
 
 }
