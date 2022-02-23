@@ -9,6 +9,7 @@ import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Admin;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
+import jdk.jfr.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
