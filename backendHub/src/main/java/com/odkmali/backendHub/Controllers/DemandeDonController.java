@@ -60,4 +60,9 @@ public class DemandeDonController {
     public Integer nbreDemandeRecu() {
         return demandeDonServiceImplements.nbreDemandeRecu();
     }
+
+    @GetMapping("/nbreDonAttente")
+    public Integer nbreDemandeAttente() {
+        return demandeDonServiceImplements.nbreDemandeAttente();
+    }
 }

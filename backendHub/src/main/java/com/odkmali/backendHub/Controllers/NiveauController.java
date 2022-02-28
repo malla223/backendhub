@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("*"    )
 @RequestMapping("/api/niveau")
 public class NiveauController {
 
     @Autowired
     NiveauServiceImplements niveauServiceImplements;
 
-    @PostMapping("/saveNiveau")
+        @PostMapping("/saveNiveau")
     @ResponseBody
     public Niveau saveNiveau(@RequestBody Niveau niveau){
         return niveauServiceImplements.saveNiveau(niveau);
@@ -33,7 +33,7 @@ public class NiveauController {
         niveauServiceImplements.deleteNiveau(id);
     }
 
-    @GetMapping("/getNiveauId/{id}")
+    @GetMapping("/getNiveauById/{id}")
     @ResponseBody
     public Niveau getNiveauById(@PathVariable("id") Long id){
         return niveauServiceImplements.getNiveauById(id);

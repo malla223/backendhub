@@ -107,4 +107,9 @@ public class DonServiceImplements implements DonService{
     public Integer nbreDonC() {
         return donRepo.nbreDonConfirmer();
     }
+
+    @Override
+    public Integer nbreDonA() {
+        return donRepo.nbreDonAttente();
+    }
 }

@@ -118,4 +118,9 @@ public class DonController {
         return donServiceImplements.nbreDonC();
     }
 
+    @GetMapping("/nbreDonA")
+    public Integer nbreDonA() {
+        return donServiceImplements.nbreDonA();
+    }
+
 }

@@ -18,4 +18,5 @@ public interface DemandeDonService {
     public List<DemandeDon> getDemandeByUser(User user);
     public DemandeDon getDemandeByid(Long id);
     public Integer nbreDemandeRecu();
+    public Integer nbreDemandeAttente();
 }

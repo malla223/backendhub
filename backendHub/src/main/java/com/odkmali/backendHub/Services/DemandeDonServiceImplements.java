@@ -59,4 +59,8 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.nombreDonRecu();
     }
 
+    public Integer nbreDemandeAttente() {
+        return demandeDonRepo.nombreDemandeAttente();
+    }
+
 }
