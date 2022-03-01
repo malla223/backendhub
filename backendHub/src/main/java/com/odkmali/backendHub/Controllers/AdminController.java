@@ -34,6 +34,7 @@ public class AdminController {
     public Admin getAdminById(@PathVariable("id") Long id) {
         return adminServiceImplements.getAdminById(id);
     }
+
     @GetMapping("/getAdminByEtat/{etat}")
     public List<Admin> getAdminByEtat(@PathVariable("etat") Etat etat) {
         return adminServiceImplements.getAdminByEtat(etat);
@@ -53,6 +54,7 @@ public class AdminController {
     public void restaurerAdmin(@PathVariable("id") Long id) {
         adminServiceImplements.restaurerAdmin(id);
     }
+
     @PutMapping("/modifierAdmin/{id}")
     @ResponseBody
     public Admin modifierAdmin(@PathVariable("id") Long id, @RequestBody Admin admin) {
