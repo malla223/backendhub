@@ -4,6 +4,7 @@ public enum Etat {
 
     encours,
     confirmer,
+    demandeConfirmer,
     attente,
     actif,
     inactif

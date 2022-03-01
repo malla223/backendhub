@@ -47,6 +47,10 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Modifying
     public void deleteDon(@Param("id_don")Long id);
 
+    @Query(value = " UPDATE Don SET etat='demandeConfirmer' WHERE id_don=:id_don")
+    @Modifying
+    public void demandeConfirmer(@Param("id_don")Long id);
+
     @Query(value = "SELECT d FROM Don d WHERE d.etat='attente' AND d.user=:user")
     public List<Don> getDonByUser(@Param("user")User user);
 
