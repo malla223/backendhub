@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.repository;
 
 import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.model.DemandeDon;
 import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -45,4 +46,10 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Query(value = " UPDATE Don SET etat='inactif' WHERE id_don=:id_don")
     @Modifying
     public void deleteDon(@Param("id_don")Long id);
+
+    @Query(value = "SELECT d FROM Don d WHERE d.etat='attente' AND d.user=:user")
+    public List<Don> getDonByUser(@Param("user")User user);
+
+    @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='confirmer'")
+    Integer nbreDonConfirmer();
 }

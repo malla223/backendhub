@@ -6,7 +6,13 @@ import com.odkmali.backendHub.model.Admin;
 import com.odkmali.backendHub.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +22,6 @@ public class AdminServiceImplements implements AdminService{
 
     @Autowired
     AdminRepo adminRepo;
-
-    public Admin SaveAdmin(Admin admin){
-        Optional<Admin> optionalAdmin = adminRepo.findAdmin(admin.getLogin_admin());
-
-        if(optionalAdmin.isPresent()){
-            System.out.println("Ce login existe deja!");
-        }else{
-            adminRepo.save(admin);
-        }
-        return admin;
-    }
 
     @Override
     public List<Admin> getAllAdmin() {
@@ -59,6 +54,12 @@ public class AdminServiceImplements implements AdminService{
         adminRepo.restaurerAdmin(id);
 
     }
+
+    @Override
+    public Admin authAdmin(String login_admin, String password_admin) {
+        return adminRepo.getAdminByLoginAndPassword(login_admin, password_admin);
+    }
+
     public Admin modifierAdmin(Long id, Admin admin) {
         Admin a = adminRepo.findById(id).get();
         a.setNom_admin(admin.getNom_admin());
@@ -71,5 +72,27 @@ public class AdminServiceImplements implements AdminService{
         return adminRepo.save(a);
     }
 
+    public byte[] getPhoto(Long id) throws IOException {
+        Admin a = adminRepo.getAdminById(id);
+        String iconPhoto = a.getPhoto_admin();
+        File file = new File ("src/main/resources/Images/" + a.getId_admin() + "/" + iconPhoto);
+        Path path = Paths.get(file.toURI());
+        return Files.readAllBytes(path);
+    }
+
+    public Admin saveAdmin(Admin admin, MultipartFile photo) throws IOException {
+        Optional<Admin> optionalAdmin = adminRepo.findAdmin(admin.getLogin_admin());
+
+        if(optionalAdmin.isPresent()){
+            System.out.println("Ce login existe déja");
+        }else{
+            adminRepo.save(admin);
+        }
+        return (admin);
+    }
+
+    public Integer nombreAdmin() {
+        return adminRepo.nombreAdmin();
+    }
 
 }

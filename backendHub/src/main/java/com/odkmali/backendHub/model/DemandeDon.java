@@ -9,30 +9,26 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Don {
+public class DemandeDon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_don;
+    private Long id_demande;
     @NotNull
-    private String libelle_don;
+    private String nom_eleve;
     @NotNull
-    @ManyToOne
-    private Niveau niveau;
+    private String nom_ecole;
     @NotNull
-    private String photo_don;
-   // @ManyToOne
-    //private Ecole ecole;
-    //@ManyToOne
-    //private Eleve eleve;
-    @ManyToOne
-    private User user;
-    @ManyToOne
-    private Categorie categorie;
+    private String adresse_ecole;
+    @NotNull
+    private Long tel_ecole;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.attente;
-
+    @OneToOne
+    private Don don;
+    @OneToOne
+    private User user;
 }

@@ -27,6 +27,7 @@ public class Ecole {
     @NotNull
     private String adresse_ecole;
     @NotNull
+    @Column(unique = true)
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;

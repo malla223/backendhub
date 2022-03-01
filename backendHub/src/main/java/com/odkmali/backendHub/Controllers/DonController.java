@@ -1,11 +1,19 @@
 package com.odkmali.backendHub.Controllers;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.odkmali.backendHub.Services.DonServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
+import com.odkmali.backendHub.model.User;
+import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,13 +25,24 @@ public class DonController {
     DonServiceImplements donServiceImplements;
 
     @PostMapping("/saveDon")
-    @ResponseBody
-    public Don saveDon(@RequestBody Don don){
-        return donServiceImplements.saveDon(don);
+    public Don saveDon(@RequestParam("data") String don, @RequestParam("image")MultipartFile photo)
+            throws JsonParseException, JsonMappingException, Exception {
+
+        String fileName = StringUtils.cleanPath(photo.getOriginalFilename());
+        Don d = new Don();
+        d.setPhoto_don(fileName);
+
+        Don savedon = donServiceImplements.saveDon(d, photo);
+        String uploadDir = "src/main/resources/Images/" +savedon.getId_don();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, photo);
+
+        return (d);
     }
 
     @GetMapping("/getDonConfirmer")
     @ResponseBody
+    @CrossOrigin("*")
     public List<Don> getAllDonConfirmer(){
         return donServiceImplements.getAllDonConfirmer();
     }
@@ -81,6 +100,22 @@ public class DonController {
     @DeleteMapping("/deleteDon/{id}")
     public void deleteDon(@PathVariable("id") Long id){
         donServiceImplements.deleteDon(id);
+    }
+
+    @GetMapping("/getDonByUser/{id_user}")
+    @ResponseBody
+    public List<Don> getDonByUser(@PathVariable("id_user") User user) {
+        return donServiceImplements.getDonByUser(user);
+    }
+
+    @GetMapping(value = "/getPhoto/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public byte[] getPhoto(@PathVariable("id") Long id) throws IOException {
+        return donServiceImplements.getPhoto(id);
+    }
+
+    @GetMapping("/nbreDonC")
+    public Integer nbreDonC() {
+        return donServiceImplements.nbreDonC();
     }
 
 }
