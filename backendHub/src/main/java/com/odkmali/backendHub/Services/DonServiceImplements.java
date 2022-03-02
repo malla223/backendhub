@@ -98,7 +98,7 @@ public class DonServiceImplements implements DonService{
     public byte[] getPhoto(Long id) throws IOException {
         Don d = donRepo.getById(id);
         String iconPhoto = d.getPhoto_don();
-        File file = new File ("src/main/resources/Images/" + d.getId_don() + "/" + iconPhoto);
+        File file = new File ("src/main/resources/Images/"+d.getId_don()+"/"+ iconPhoto);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }

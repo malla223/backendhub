@@ -3,6 +3,7 @@ package com.odkmali.backendHub.Services;
 import com.odkmali.backendHub.model.DemandeDon;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.DemandeDonRepo;
+import com.odkmali.backendHub.repository.DonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
     @Autowired
     DemandeDonRepo demandeDonRepo;
+    @Autowired
+    DonRepo donRepo;
 
     public DemandeDon faireDemande(DemandeDon demandeDon) {
         Optional<DemandeDon> optionalDemandeDon = demandeDonRepo.findDemandeByDon(demandeDon.getUser(), demandeDon.getDon());
@@ -38,9 +41,9 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
 
     public void confirmerDemande(Long id) {
+        donRepo.demandeConfirmer(id);
         demandeDonRepo.confirmerDemandeDon(id);
     }
-
 
     public void annulerDemande(Long id) {
         demandeDonRepo.annulerDemande(id);
