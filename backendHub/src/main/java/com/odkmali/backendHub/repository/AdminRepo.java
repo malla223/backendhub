@@ -21,7 +21,7 @@ public interface AdminRepo extends JpaRepository<Admin, Long> {
     public List<Admin> getAllAdmin();
 
     @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' AND a.id_admin=:id_admin")
-    public Admin getAdminById (Long id);
+    public Admin getAdminById (@Param("id_admin")Long id);
 
     @Query(value="SELECT a FROM Admin a WHERE a.etat= 'actif' AND a.type= :type")
     public List <Admin> getAdminByType(@Param("type") AdminEnum type);
