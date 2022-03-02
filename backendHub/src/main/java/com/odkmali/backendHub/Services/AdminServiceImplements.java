@@ -3,7 +3,6 @@ package com.odkmali.backendHub.Services;
 import com.odkmali.backendHub.enumeration.AdminEnum;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Admin;
-import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

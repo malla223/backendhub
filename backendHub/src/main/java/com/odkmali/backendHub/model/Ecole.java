@@ -25,6 +25,8 @@ public class Ecole {
     private String password_ecole;
     private String site_ecole;
     @NotNull
+    private String email;
+    @NotNull
     private String adresse_ecole;
     @NotNull
     @Column(unique = true)
