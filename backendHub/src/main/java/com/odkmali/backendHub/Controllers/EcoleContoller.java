@@ -46,7 +46,7 @@ public class EcoleContoller {
     public Ecole getEcoleById(@PathVariable("id") Long id){
         return ecoleServiceImplements.getEcoleById(id);}
 
-    @PutMapping("/modifierEccole/{id}")
+        @PutMapping("/modifierEccole/{id}")
     @ResponseBody
     public Ecole modifierEcole(@PathVariable("id") Long id, @RequestBody Ecole ecole) {
         return ecoleServiceImplements.modifierEcole(id, ecole);}
