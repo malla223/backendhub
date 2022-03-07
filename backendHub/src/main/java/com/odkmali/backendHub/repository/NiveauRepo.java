@@ -12,4 +12,7 @@ public interface NiveauRepo extends JpaRepository<Niveau, Long> {
 
     @Query("SELECT n FROM Niveau n WHERE n.libelle_niveau = :libelle_niveau")
     Optional<Niveau> findNiveau(@Param("libelle_niveau") String libelle);
+
+    @Query("SELECT n FROM Niveau n WHERE n.libelle_niveau = :libelle_niveau")
+    Niveau getByNiveau(@Param("libelle_niveau") String libelle);
 }

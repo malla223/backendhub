@@ -46,4 +46,9 @@ public class NiveauServiceImplements implements NiveauService{
         n.setLibelle_niveau(niveau.getLibelle_niveau());
         return niveauRepo.save(n);
     }
+
+    @Override
+    public Niveau getNiveauByLibelle(String libelle) {
+        return niveauRepo.getByNiveau(libelle);
+    }
 }

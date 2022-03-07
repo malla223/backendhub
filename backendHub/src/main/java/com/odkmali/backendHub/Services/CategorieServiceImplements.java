@@ -46,4 +46,9 @@ public class CategorieServiceImplements implements CategorieService{
         c.setLibelle_cat(cat.getLibelle_cat());
         return categorieRepo.save(c);
     }
+
+    @Override
+    public Categorie getCatByLib(String libelle) {
+        return categorieRepo.getCategorieLibele(libelle);
+    }
 }

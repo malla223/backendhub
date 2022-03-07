@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*"    )
+@CrossOrigin("*")
 @RequestMapping("/api/niveau")
 public class NiveauController {
 
@@ -43,5 +43,12 @@ public class NiveauController {
     @ResponseBody
     public Niveau modifierNiveau(@PathVariable("id") Long id, @RequestBody Niveau niveau){
         return niveauServiceImplements.modifierNiveau(id, niveau);
+    }
+
+
+    @GetMapping("/getNiveauByLibelle/{libelle}")
+    @ResponseBody
+    public Niveau getNiveauByLibelle(@PathVariable("libelle") String libelle) {
+        return niveauServiceImplements.getNiveauByLibelle(libelle);
     }
 }
