@@ -29,7 +29,7 @@ public class EleveController {
         return eleveServiceImplements.getEleveByEtat(etat);
     }
 
-    @GetMapping("/getElevebyId/{id}")
+    @GetMapping("/getEleveById/{id}")
     @ResponseBody
     public  Eleve getEleveById(@PathVariable("id") Long id){
         return eleveServiceImplements.getEleveById(id);

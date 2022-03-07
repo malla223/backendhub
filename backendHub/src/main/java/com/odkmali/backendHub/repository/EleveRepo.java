@@ -17,7 +17,7 @@ public interface EleveRepo extends JpaRepository<Eleve, Long> {
     @Query(value="SELECT e FROM Eleve e WHERE e.etat=:etat ")
     public List<Eleve> getEleveByEtat(@Param("etat") Etat etat);
 
-    @Query(value="SELECT e FROM Eleve e WHERE e.etat='actif' AND e.id_eleve = : id_eleve ")
+    @Query(value="SELECT e FROM Eleve e WHERE e.etat='actif' AND e.id_eleve=:id_eleve ")
     public Eleve getEleveById(@Param("id_eleve")Long id);
 
     @Query(value="SELECT e FROM Eleve e WHERE e.etat='actif' ")
