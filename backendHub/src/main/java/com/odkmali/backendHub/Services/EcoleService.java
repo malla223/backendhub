@@ -2,6 +2,7 @@ package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
+import com.odkmali.backendHub.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface EcoleService {
     public Ecole getEcoleById(Long id);
     public Ecole saveEcole(Ecole ecole);
     public Ecole modifierEcole(Long id , Ecole ecole);
+    Ecole authEcole(String login, String password);
 }

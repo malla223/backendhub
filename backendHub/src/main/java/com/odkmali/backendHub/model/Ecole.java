@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.model;
 
 import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.enumeration.TypeUser;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,4 +34,6 @@ public class Ecole {
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
+    @Enumerated(EnumType.STRING)
+    private TypeUser type = TypeUser.ecole;
 }

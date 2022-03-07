@@ -32,6 +32,7 @@ public class CategorieServiceImplements implements CategorieService{
 
 
     public void deleteCat(Long id) {
+
         categorieRepo.deleteById(id);
     }
 

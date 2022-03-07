@@ -3,6 +3,7 @@ package com.odkmali.backendHub.Controllers;
 import com.odkmali.backendHub.Services.EcoleServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
+import com.odkmali.backendHub.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,4 +51,9 @@ public class EcoleContoller {
     @ResponseBody
     public Ecole modifierEcole(@PathVariable("id") Long id, @RequestBody Ecole ecole) {
         return ecoleServiceImplements.modifierEcole(id, ecole);}
+
+    @GetMapping("/auth/{login}/{password}")
+    public Ecole authUser(@PathVariable String login, @PathVariable String password) {
+        return ecoleServiceImplements.authEcole(login, password);
+    }
 }

@@ -17,7 +17,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.login_user = :login_user")
     Optional<User> findUser(@Param("login_user") String login);
 
-    @Query(value = " SELECT u FROM User u WHERE u.login_user=:login_user AND u.password_user=:password_user AND u.etat='actif'")
+    @Query(value = " SELECT u FROM User u WHERE u.login_user=:login_user AND u.password_user=:password_user")
     User getUserByLoginAndPassword(@Param("login_user") String login, @Param("password_user") String password);
 
     @Query(value = " SELECT u FROM User u WHERE u.etat =:etat ")
