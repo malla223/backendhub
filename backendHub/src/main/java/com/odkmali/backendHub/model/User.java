@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.model;
 
 import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.enumeration.TypeUser;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -29,5 +30,7 @@ public class User {
     private String photo_user;
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.actif;
+    @Enumerated(EnumType.STRING)
+    private TypeUser type = TypeUser.user;
 
 }

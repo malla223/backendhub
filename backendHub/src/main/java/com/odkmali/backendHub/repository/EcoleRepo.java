@@ -3,6 +3,7 @@ package com.odkmali.backendHub.repository;
 
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
+import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,9 @@ public interface EcoleRepo extends JpaRepository <Ecole, Long>{
 
     @Query(value="SELECT e FROM Ecole e WHERE e.login_ecole=: login_ecole ")
     Optional<Ecole> findEcole(@Param("login_ecole")String login_ecole);
+
+    @Query(value = " SELECT e FROM Ecole e WHERE e.login_ecole=:login_ecole AND e.password_ecole=:password_ecole")
+    Ecole getEcoleByLoginAndPassword(@Param("login_ecole") String login, @Param("password_ecole") String password);
 
     @Query(value="SELECT e FROM Ecole e WHERE e.etat=:etat")
     public List <Ecole> getEcoleByEtat(@Param("etat") Etat etat);

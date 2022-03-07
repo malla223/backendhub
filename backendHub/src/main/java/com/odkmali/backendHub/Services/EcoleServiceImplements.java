@@ -47,4 +47,9 @@ public class EcoleServiceImplements implements EcoleService{
         e.setTel_ecole(ecole.getTel_ecole());
         return ecoleRepo.save(e);
     }
+
+    @Override
+    public Ecole authEcole(String login, String password) {
+        return ecoleRepo.getEcoleByLoginAndPassword(login, password);
+    }
 }
