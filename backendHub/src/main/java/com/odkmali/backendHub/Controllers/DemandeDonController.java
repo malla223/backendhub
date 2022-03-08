@@ -65,4 +65,14 @@ public class DemandeDonController {
     public Integer nbreDemandeAttente() {
         return demandeDonServiceImplements.nbreDemandeAttente();
     }
+
+    @GetMapping("/nbreDemandeAttente/{user}")
+    public Integer nbreDemandeAttenteUser(@PathVariable("user") User user) {
+        return demandeDonServiceImplements.nbreDemandeAttenteUser(user);
+    }
+
+    @GetMapping("/nbreDonRecu/{user}")
+    public Integer nbreDemandeConfirmerUser(@PathVariable("user") User user) {
+        return demandeDonServiceImplements.nbreDemandeConfirmerUser(user);
+    }
 }
