@@ -37,7 +37,7 @@ public class AdminController {
         a.setPhoto_admin(fileName);
 
         Admin saveadmin = adminServiceImplements.saveAdmin(a, photo);
-        String uploadDir = "src/main/resources/Images/" +saveadmin.getId_admin();
+        String uploadDir = "src/main/resources/Images/Admin" +saveadmin.getId_admin();
 
         FileUploadUtil.saveFile(uploadDir, fileName, photo);
 
