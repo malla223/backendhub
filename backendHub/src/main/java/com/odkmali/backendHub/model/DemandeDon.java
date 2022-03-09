@@ -20,6 +20,8 @@ public class DemandeDon {
     @NotNull
     private String nom_eleve;
     @NotNull
+    private String classe;
+    @NotNull
     private String nom_ecole;
     @NotNull
     private String adresse_ecole;
@@ -27,8 +29,6 @@ public class DemandeDon {
     private String nom_parent;
     @NotNull
     private Long tel_parent;
-    @NotNull
-    private String classe;
     @NotNull
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)

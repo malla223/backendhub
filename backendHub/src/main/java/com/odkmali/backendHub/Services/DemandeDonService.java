@@ -22,4 +22,5 @@ public interface DemandeDonService {
     public Integer nbreDemandeAttente();
     public Integer nbreDemandeAttenteUser(User user);
     public Integer nbreDemandeConfirmerUser(User user);
+    public List<DemandeDon> getAllDemandeDon();
 }
