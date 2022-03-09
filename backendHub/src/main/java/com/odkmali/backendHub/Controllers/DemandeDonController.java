@@ -34,6 +34,12 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeConfirmer();
     }
 
+    @GetMapping("/getAllDemande")
+    @ResponseBody
+    public List<DemandeDon> getAllDemandeDon() {
+        return demandeDonServiceImplements.getAllDemandeDon();
+    }
+
     @GetMapping("/confirmerD/{id}")
     public void confirmerDemande(@PathVariable("id") Long id) {
         demandeDonServiceImplements.confirmerDemande(id);

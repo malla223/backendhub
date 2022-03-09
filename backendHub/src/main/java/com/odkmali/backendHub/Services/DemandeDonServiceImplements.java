@@ -78,4 +78,8 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.nombreDonRecuByUser(user);
     }
 
+    public List<DemandeDon> getAllDemandeDon() {
+        return demandeDonRepo.findAll();
+    }
+
 }

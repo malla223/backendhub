@@ -20,14 +20,13 @@ public class DemandeDon {
     @NotNull
     private String nom_eleve;
     @NotNull
-    private String classe_eleve;
+    private String classe;
     @NotNull
     private String nom_ecole;
     @NotNull
     private String adresse_ecole;
     private String nom_parent;
     private Long tel_parent;
-    private String classe;
     @NotNull
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)
