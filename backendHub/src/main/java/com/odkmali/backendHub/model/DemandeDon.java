@@ -20,6 +20,8 @@ public class DemandeDon {
     @NotNull
     private String nom_eleve;
     @NotNull
+    private String classe_eleve;
+    @NotNull
     private String nom_ecole;
     @NotNull
     private String adresse_ecole;
