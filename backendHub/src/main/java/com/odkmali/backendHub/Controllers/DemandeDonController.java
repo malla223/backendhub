@@ -50,6 +50,12 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeByUser(user);
     }
 
+    @GetMapping("/getAllEleveUser/{id_user}")
+    @ResponseBody
+    public List<DemandeDon> getEleveByUser(User user) {
+        return demandeDonServiceImplements.getEleveByUser(user);
+    }
+
     @GetMapping("/getDemandeById/{id}")
     @ResponseBody
     public DemandeDon getDemandeByid(@PathVariable("id") Long id) {

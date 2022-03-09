@@ -20,8 +20,11 @@ public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente'")
     public List<DemandeDon> getDemandeDonAttente();
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user AND d.etat='attente'")
     public List<DemandeDon> getDemandeDonByUser(@Param("user")User user);
+
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user")
+    public List<DemandeDon> getEleveByUser(@Param("user")User user);
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer'")
     public List<DemandeDon> getDemandeConfirmer();

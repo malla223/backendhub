@@ -53,6 +53,10 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.getDemandeDonByUser(user);
     }
 
+    public List<DemandeDon> getEleveByUser(User user) {
+        return demandeDonRepo.getEleveByUser(user);
+    }
+
 
     public DemandeDon getDemandeByid(Long id) {
         return demandeDonRepo.getDemandeAttenteById(id);
