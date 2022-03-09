@@ -77,7 +77,7 @@ public class AdminServiceImplements implements AdminService{
     public byte[] getPhoto(Long id) throws IOException {
         Admin a = adminRepo.getAdminById(id);
         String iconPhoto = a.getPhoto_admin();
-        File file = new File ("src/main/resources/Images/" + a.getId_admin() + "/" + iconPhoto);
+        File file = new File ("src/main/resources/Images/Admin" + a.getId_admin() + "/" + iconPhoto);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }

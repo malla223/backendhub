@@ -13,4 +13,5 @@ public interface CategorieService {
     void deleteCat(Long id);
     public Categorie getCatById(Long id);
     public Categorie modifierCat(Long id, Categorie cat);
+    public Categorie getCatByLib(String libelle);
 }

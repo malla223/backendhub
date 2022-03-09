@@ -33,7 +33,7 @@ public class DonController {
         d.setPhoto_don(fileName);
 
         Don savedon = donServiceImplements.saveDon(d, photo);
-        String uploadDir = "src/main/resources/Images/" +savedon.getId_don();
+        String uploadDir = "src/main/resources/Images/Don" +savedon.getId_don();
 
         FileUploadUtil.saveFile(uploadDir, fileName, photo);
 

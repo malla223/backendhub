@@ -53,6 +53,10 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.getDemandeDonByUser(user);
     }
 
+    public List<DemandeDon> getEleveByUser(User user) {
+        return demandeDonRepo.getEleveByUser(user);
+    }
+
 
     public DemandeDon getDemandeByid(Long id) {
         return demandeDonRepo.getDemandeAttenteById(id);
@@ -64,6 +68,14 @@ public class DemandeDonServiceImplements implements DemandeDonService{
 
     public Integer nbreDemandeAttente() {
         return demandeDonRepo.nombreDemandeAttente();
+    }
+
+    public Integer nbreDemandeAttenteUser(User user) {
+        return demandeDonRepo.nombreDemandeAttenteByUser(user);
+    }
+
+    public Integer nbreDemandeConfirmerUser(User user) {
+        return demandeDonRepo.nombreDonRecuByUser(user);
     }
 
 }

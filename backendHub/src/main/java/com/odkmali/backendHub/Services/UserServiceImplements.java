@@ -75,7 +75,7 @@ public class UserServiceImplements implements UserService{
     public byte[] getPhoto(Long id) throws IOException {
         User u = userRepo.getUserById(id);
         String iconPhoto = u.getPhoto_user();
-        File file = new File ("src/main/resources/Images/" + u.getId_user() + "/" + iconPhoto);
+        File file = new File ("src/main/resources/Images/User" + u.getId_user() + "/" + iconPhoto);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }

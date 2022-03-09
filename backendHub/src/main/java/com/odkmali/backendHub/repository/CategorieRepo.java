@@ -12,4 +12,7 @@ public interface CategorieRepo extends JpaRepository<Categorie, Long> {
 
     @Query("SELECT c FROM Categorie c WHERE c.libelle_cat = :libelle_cat")
     Optional<Categorie> findCategorie(@Param("libelle_cat") String libelle);
+
+    @Query("SELECT c FROM Categorie c WHERE c.libelle_cat = :libelle_cat")
+    Categorie getCategorieLibele(@Param("libelle_cat") String libelle);
 }

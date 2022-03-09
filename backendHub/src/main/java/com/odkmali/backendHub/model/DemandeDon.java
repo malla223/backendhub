@@ -25,6 +25,9 @@ public class DemandeDon {
     private String nom_ecole;
     @NotNull
     private String adresse_ecole;
+    private String nom_parent;
+    private Long tel_parent;
+    private String classe;
     @NotNull
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)

@@ -50,6 +50,12 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeByUser(user);
     }
 
+    @GetMapping("/getAllEleveUser/{id_user}")
+    @ResponseBody
+    public List<DemandeDon> getEleveByUser(User user) {
+        return demandeDonServiceImplements.getEleveByUser(user);
+    }
+
     @GetMapping("/getDemandeById/{id}")
     @ResponseBody
     public DemandeDon getDemandeByid(@PathVariable("id") Long id) {
@@ -64,5 +70,15 @@ public class DemandeDonController {
     @GetMapping("/nbreDonAttente")
     public Integer nbreDemandeAttente() {
         return demandeDonServiceImplements.nbreDemandeAttente();
+    }
+
+    @GetMapping("/nbreDemandeAttente/{user}")
+    public Integer nbreDemandeAttenteUser(@PathVariable("user") User user) {
+        return demandeDonServiceImplements.nbreDemandeAttenteUser(user);
+    }
+
+    @GetMapping("/nbreDonRecu/{user}")
+    public Integer nbreDemandeConfirmerUser(@PathVariable("user") User user) {
+        return demandeDonServiceImplements.nbreDemandeConfirmerUser(user);
     }
 }

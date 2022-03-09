@@ -13,4 +13,5 @@ public interface NiveauService {
     void deleteNiveau(Long id);
     public Niveau getNiveauById(Long id);
     public Niveau modifierNiveau(Long id, Niveau niveau);
+    public Niveau getNiveauByLibelle(String libelle);
 }

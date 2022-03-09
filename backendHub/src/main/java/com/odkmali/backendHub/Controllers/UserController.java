@@ -32,7 +32,7 @@ public class UserController {
         u.setPhoto_user(fileName);
 
         User saveuser = userServiceImplements.createUser(u, photo);
-        String uploadDir = "src/main/resources/Images/" +saveuser.getId_user();
+        String uploadDir = "src/main/resources/Images/User" +saveuser.getId_user();
 
         FileUploadUtil.saveFile(uploadDir, fileName, photo);
 
