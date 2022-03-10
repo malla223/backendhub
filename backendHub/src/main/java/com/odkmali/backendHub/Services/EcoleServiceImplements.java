@@ -6,7 +6,9 @@ import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +28,8 @@ public class EcoleServiceImplements implements EcoleService{
 
     public Ecole getEcoleById(Long id){return ecoleRepo.getEcoleById(id);}
 
-    public Ecole saveEcole(Ecole ecole) {
+    public Ecole saveEcole(Ecole ecole, MultipartFile contrat) throws IOException {
         Optional<Ecole> optionalEcole = ecoleRepo.findEcole(ecole.getLogin_ecole());
-
         if(optionalEcole.isPresent()){
             System.out.println("Ce login est déjà designé a un ecole");
         }else{
@@ -45,6 +46,9 @@ public class EcoleServiceImplements implements EcoleService{
         e.setPassword_ecole(ecole.getPassword_ecole());
         e.setSite_ecole(ecole.getSite_ecole());
         e.setTel_ecole(ecole.getTel_ecole());
+        e.setContrat_ecole(ecole.getContrat_ecole());
+        e.setAdresse_ecole(ecole.getAdresse_ecole());
+        e.setEmail_ecole(ecole.getEmail_ecole());
         return ecoleRepo.save(e);
     }
 

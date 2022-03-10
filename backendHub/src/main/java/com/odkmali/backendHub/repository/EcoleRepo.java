@@ -19,7 +19,7 @@ import java.util.Optional;
 public interface EcoleRepo extends JpaRepository <Ecole, Long>{
 
 
-    @Query(value="SELECT e FROM Ecole e WHERE e.login_ecole=: login_ecole ")
+    @Query(value="SELECT e FROM Ecole e WHERE e.login_ecole=:login_ecole")
     Optional<Ecole> findEcole(@Param("login_ecole")String login_ecole);
 
     @Query(value = " SELECT e FROM Ecole e WHERE e.login_ecole=:login_ecole AND e.password_ecole=:password_ecole")

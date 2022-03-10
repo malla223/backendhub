@@ -3,9 +3,11 @@ package com.odkmali.backendHub.Controllers;
 import com.odkmali.backendHub.Services.EcoleServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
-import com.odkmali.backendHub.model.User;
+import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,8 +21,18 @@ public class EcoleContoller {
 
     @PostMapping("/saveEcole")
     @ResponseBody
-    public Ecole saveEcole(@RequestBody Ecole ecole){
-        return ecoleServiceImplements.saveEcole(ecole);
+    public Ecole saveEcole(@RequestParam("data") String ecole, @RequestParam("contrat")MultipartFile contrat)
+    throws Exception {
+        String fileName = StringUtils.cleanPath(contrat.getOriginalFilename());
+        Ecole e = new Ecole();
+        e.setContrat_ecole(fileName);
+
+        Ecole saveEcole = ecoleServiceImplements.saveEcole(e, contrat);
+        String uploadDir = "src/main/resources/Contrat/Ecole/" +saveEcole.getId_ecole();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, contrat);
+
+        return (e);
     }
 
     @GetMapping("/getEcoleByEtat/{etat}")
