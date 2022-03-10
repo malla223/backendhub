@@ -58,7 +58,7 @@ public class DemandeDonController {
 
     @GetMapping("/getAllEleveUser/{id_user}")
     @ResponseBody
-    public List<DemandeDon> getEleveByUser(User user) {
+    public List<DemandeDon> getEleveByUser(@PathVariable("id_user") User user) {
         return demandeDonServiceImplements.getEleveByUser(user);
     }
 
