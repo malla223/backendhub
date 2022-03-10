@@ -71,7 +71,7 @@ public class DonController {
         return donServiceImplements.getDonById(id);
     }
 
-    @PutMapping("/modifierDon/{i    d}")
+    @PutMapping("/modifierDon/{id}")
     @ResponseBody
     public Don modifierDon(@PathVariable("id") Long id, @RequestBody Don don){
         return donServiceImplements.modifierDon(id, don);

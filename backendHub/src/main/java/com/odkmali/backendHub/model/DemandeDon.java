@@ -25,7 +25,9 @@ public class DemandeDon {
     private String nom_ecole;
     @NotNull
     private String adresse_ecole;
+    @NotNull
     private String nom_parent;
+    @NotNull
     private Long tel_parent;
     @NotNull
     private Long tel_ecole;
