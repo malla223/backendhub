@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.repository.DemandeDonRepo;
 import com.odkmali.backendHub.repository.DonRepo;
@@ -53,8 +54,8 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.getDemandeDonByUser(user);
     }
 
-    public List<DemandeDon> getEleveByUser(User user) {
-        return demandeDonRepo.getEleveByUser(user);
+    public List<DemandeDon> getEleveByEcole(Ecole ecole) {
+        return demandeDonRepo.getEleveByEcole(ecole);
     }
 
 

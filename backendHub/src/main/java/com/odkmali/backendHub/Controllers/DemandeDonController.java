@@ -2,7 +2,9 @@ package com.odkmali.backendHub.Controllers;
 
 import com.odkmali.backendHub.Services.DemandeDonServiceImplements;
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.model.User;
+import com.odkmali.backendHub.repository.DemandeDonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ public class DemandeDonController {
 
     @Autowired
     DemandeDonServiceImplements demandeDonServiceImplements;
+    @Autowired
+    DemandeDonRepo demandeDonRepo;
 
     @PostMapping("/demandeDon")
     @ResponseBody
@@ -26,6 +30,12 @@ public class DemandeDonController {
     @ResponseBody
     public List<DemandeDon> getDemandeDonAttente() {
         return demandeDonServiceImplements.getDemandeDonAttente();
+    }
+
+    @GetMapping("/getDemandeAttenteEcole")
+    @ResponseBody
+    public List<DemandeDon> getDemandeDonEcoleAttente() {
+        return demandeDonRepo.getDemandeDonEcoleAttente();
     }
 
     @GetMapping("/getDemandeConfirmer")
@@ -56,10 +66,16 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeByUser(user);
     }
 
-    @GetMapping("/getAllEleveUser/{id_user}")
+    @GetMapping("/getAllDemandeEcole/{id_ecole}")
     @ResponseBody
-    public List<DemandeDon> getEleveByUser(@PathVariable("id_user") User user) {
-        return demandeDonServiceImplements.getEleveByUser(user);
+    public List<DemandeDon> getDemandeByEcole(@PathVariable("id_ecole") Ecole ecole) {
+        return demandeDonRepo.getDemandeDonByEcole(ecole);
+    }
+
+    @GetMapping("/getAllEleveEcole/{id_ecole}")
+    @ResponseBody
+    public List<DemandeDon> getEleveByEcole(@PathVariable("id_ecole") Ecole ecole) {
+        return demandeDonServiceImplements.getEleveByEcole(ecole);
     }
 
     @GetMapping("/getDemandeById/{id}")
@@ -86,5 +102,15 @@ public class DemandeDonController {
     @GetMapping("/nbreDonRecu/{user}")
     public Integer nbreDemandeConfirmerUser(@PathVariable("user") User user) {
         return demandeDonServiceImplements.nbreDemandeConfirmerUser(user);
+    }
+
+    @GetMapping("/nbreDemandeAttenteEcole/{ecole}")
+    public Integer nbreDemandeAttenteEcole(@PathVariable("ecole") Ecole ecole) {
+        return demandeDonRepo.nombreDemandeAttenteByEcole(ecole);
+    }
+
+    @GetMapping("/nbreDonRecuEcole/{ecole}")
+    public Integer nbreDemandeConfirmerEcole(@PathVariable("ecole") Ecole ecole) {
+        return demandeDonRepo.nombreDonRecuByEcole(ecole);
     }
 }
