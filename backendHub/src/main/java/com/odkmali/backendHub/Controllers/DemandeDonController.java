@@ -113,4 +113,5 @@ public class DemandeDonController {
     public Integer nbreDemandeConfirmerEcole(@PathVariable("ecole") Ecole ecole) {
         return demandeDonRepo.nombreDonRecuByEcole(ecole);
     }
+
 }

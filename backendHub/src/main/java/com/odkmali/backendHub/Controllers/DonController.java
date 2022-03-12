@@ -7,6 +7,7 @@ import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.User;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
+import com.odkmali.backendHub.repository.DonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
@@ -23,6 +24,8 @@ public class DonController {
 
     @Autowired
     DonServiceImplements donServiceImplements;
+    @Autowired
+    DonRepo donRepo;
 
     @PostMapping("/saveDon")
     public Don saveDon(@RequestParam("data") String don, @RequestParam("image")MultipartFile photo)
@@ -121,6 +124,11 @@ public class DonController {
     @GetMapping("/nbreDonA")
     public Integer nbreDonA() {
         return donServiceImplements.nbreDonA();
+    }
+
+    @GetMapping("/nbreDonAttente/{user}")
+    public Integer nbreDonAttenteUser(@PathVariable("user") User user) {
+        return donRepo.nombreDonAttenteByUser(user);
     }
 
 }
