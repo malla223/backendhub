@@ -32,5 +32,4 @@ public class User {
     private Etat etat = Etat.actif;
     @Enumerated(EnumType.STRING)
     private TypeUser type = TypeUser.user;
-
 }
