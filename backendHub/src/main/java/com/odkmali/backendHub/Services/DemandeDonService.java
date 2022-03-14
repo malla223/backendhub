@@ -1,6 +1,7 @@
 package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.model.DemandeDon;
+import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.model.User;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public interface DemandeDonService {
     public void confirmerDemande(Long id);
     public void annulerDemande(Long id);
     public List<DemandeDon> getDemandeByUser(User user);
-    public List<DemandeDon> getEleveByUser(User user);
+    public List<DemandeDon> getEleveByEcole(Ecole ecole);
     public DemandeDon getDemandeByid(Long id);
     public Integer nbreDemandeRecu();
     public Integer nbreDemandeAttente();

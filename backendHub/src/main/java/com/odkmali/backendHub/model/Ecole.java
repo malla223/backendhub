@@ -26,14 +26,16 @@ public class Ecole {
     private String password_ecole;
     private String site_ecole;
     @NotNull
-    private String email;
+    private String email_ecole;
     @NotNull
     private String adresse_ecole;
+    @NotNull
+    private String contrat_ecole;
     @NotNull
     @Column(unique = true)
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)
-    private Etat etat = Etat.actif;
+    private Etat etat = Etat.inactif;
     @Enumerated(EnumType.STRING)
     private TypeUser type = TypeUser.ecole;
 }

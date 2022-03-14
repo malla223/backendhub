@@ -1,11 +1,15 @@
 package com.odkmali.backendHub.model;
 
 import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.enumeration.Genre;
 import com.odkmali.backendHub.enumeration.TypeUser;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @AllArgsConstructor
@@ -17,7 +21,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_user;
     @NotNull
-    private String nom_complet;
+    private String nom_user;
+    @NotNull
+    private String prenom_user;
+    private LocalDate datenaiss ;//For reference
+    @NotNull
+    private String email_user;
     @NotNull
     @Column(unique=true)
     private String login_user;
@@ -32,4 +41,6 @@ public class User {
     private Etat etat = Etat.actif;
     @Enumerated(EnumType.STRING)
     private TypeUser type = TypeUser.user;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
 }

@@ -3,6 +3,7 @@ package com.odkmali.backendHub.repository;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.DemandeDon;
 import com.odkmali.backendHub.model.Don;
+import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,14 +18,20 @@ import java.util.Optional;
 @Transactional
 public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente'")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente' AND nom_ecole IS NOT NULL")
     public List<DemandeDon> getDemandeDonAttente();
+
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente' AND nom_ecole=NULL")
+    public List<DemandeDon> getDemandeDonEcoleAttente();
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user AND d.etat='attente'")
     public List<DemandeDon> getDemandeDonByUser(@Param("user")User user);
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user AND d.etat='confirmer'")
-    public List<DemandeDon> getEleveByUser(@Param("user")User user);
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='attente'")
+    public List<DemandeDon> getDemandeDonByEcole(@Param("ecole") Ecole ecole);
+
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='confirmer'")
+    public List<DemandeDon> getEleveByEcole(@Param("ecole")Ecole ecole);
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer'")
     public List<DemandeDon> getDemandeConfirmer();
@@ -55,4 +62,11 @@ public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
 
     @Query(value = "SELECT COUNT (*) FROM DemandeDon WHERE etat='confirmer' AND user=:user")
     Integer nombreDonRecuByUser(@Param("user") User user);
+
+    @Query(value = "SELECT COUNT (*) FROM DemandeDon WHERE etat='attente' AND ecole=:ecole")
+    Integer nombreDemandeAttenteByEcole(@Param("ecole") Ecole ecole);
+
+    @Query(value = "SELECT COUNT (*) FROM DemandeDon WHERE etat='confirmer' AND ecole=:ecole")
+    Integer nombreDonRecuByEcole(@Param("ecole") Ecole ecole);
+
 }

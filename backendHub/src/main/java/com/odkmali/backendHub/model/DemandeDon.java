@@ -37,4 +37,6 @@ public class DemandeDon {
     private Don don;
     @OneToOne
     private User user;
+    @OneToOne
+    private Ecole ecole;
 }
