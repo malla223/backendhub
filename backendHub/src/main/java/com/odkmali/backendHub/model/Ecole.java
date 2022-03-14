@@ -35,7 +35,7 @@ public class Ecole {
     @Column(unique = true)
     private Long tel_ecole;
     @Enumerated(EnumType.STRING)
-    private Etat etat = Etat.inactif;
+    private Etat etat = Etat.attente;
     @Enumerated(EnumType.STRING)
     private TypeUser type = TypeUser.ecole;
 }
