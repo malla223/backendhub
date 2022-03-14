@@ -42,6 +42,6 @@ public interface EcoleRepo extends JpaRepository <Ecole, Long>{
     @Modifying
     public void restaurerEcole (@Param("id_ecole")Long id);
 
-    @Query(value = "SELECT e FROM Ecole e WHERE e.etat='actif' AND e.id_ecole =:id_ecole")
+    @Query(value = "SELECT e FROM Ecole e WHERE e.id_ecole =:id_ecole")
     public Ecole getEcoleById(@Param("id_ecole") Long id);
 }
