@@ -4,6 +4,7 @@ import com.odkmali.backendHub.Services.EcoleServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
+import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class EcoleContoller {
 
     @Autowired
     EcoleServiceImplements   ecoleServiceImplements;
+    @Autowired
+    EcoleRepo ecoleRepo;
 
     @PostMapping("/saveEcole")
     @ResponseBody
@@ -44,6 +47,12 @@ public class EcoleContoller {
     @ResponseBody
     public List<Ecole> getAllEcole() {
         return ecoleServiceImplements.getAllEcole();
+    }
+
+    @GetMapping("/getAllEcoleAttente")
+    @ResponseBody
+    public List<Ecole> getAllEcoleAttente() {
+        return ecoleRepo.getAllEcoleAttente();
     }
 
     @DeleteMapping("/deleteEcole/{id}")

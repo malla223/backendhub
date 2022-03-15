@@ -31,6 +31,9 @@ public interface EcoleRepo extends JpaRepository <Ecole, Long>{
     @Query(value= "SELECT e FROM Ecole e WHERE e.etat='actif'")
     public List<Ecole> getAllEcole();
 
+    @Query(value= "SELECT e FROM Ecole e WHERE e.etat='attente'")
+    public List<Ecole> getAllEcoleAttente();
+
     @Query(value="UPDATE Ecole SET etat='inactif' WHERE id_ecole=:id_ecole")
     @Modifying
     public void deleteEcole (@Param("id_ecole")Long id);
@@ -39,6 +42,6 @@ public interface EcoleRepo extends JpaRepository <Ecole, Long>{
     @Modifying
     public void restaurerEcole (@Param("id_ecole")Long id);
 
-    @Query(value = "SELECT e FROM Ecole e WHERE e.etat='actif' AND e.id_ecole =:id_ecole")
+    @Query(value = "SELECT e FROM Ecole e WHERE e.id_ecole =:id_ecole")
     public Ecole getEcoleById(@Param("id_ecole") Long id);
 }

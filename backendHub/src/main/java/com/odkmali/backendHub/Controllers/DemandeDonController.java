@@ -44,6 +44,12 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeConfirmer();
     }
 
+    @GetMapping("/getDemandeConfirmerUser")
+    @ResponseBody
+    public List<DemandeDon> getDemandeConfirmerUser() {
+        return demandeDonRepo.getDemandeConfirmerUser();
+    }
+
     @GetMapping("/getAllDemande")
     @ResponseBody
     public List<DemandeDon> getAllDemandeDon() {
