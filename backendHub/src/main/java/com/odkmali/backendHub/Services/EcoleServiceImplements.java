@@ -1,22 +1,28 @@
 package com.odkmali.backendHub.Services;
 
 
+import com.odkmali.backendHub.SendEmail.EmailSendServivce;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 @Service
 public class EcoleServiceImplements implements EcoleService{
 
     @Autowired
     EcoleRepo ecoleRepo;
+   // @Autowired
+   // EmailSendServivce emailSendServivce;
 
     public List<Ecole> getEcoleByEtat(Etat etat){return ecoleRepo.getEcoleByEtat(etat);}
 
@@ -24,7 +30,14 @@ public class EcoleServiceImplements implements EcoleService{
 
     public void deleteEcole (Long id){ecoleRepo.deleteEcole(id);}
 
-    public void restaurerEcole (Long id){ecoleRepo.restaurerEcole(id);}
+    public void restaurerEcole (Long id){
+       // Ecole ecole = new Ecole();
+       // emailSendServivce.envoyerEmail(ecole.getEmail_ecole(),
+           //     "Votre compte a été activer avec succès, vous pouvez vous connecter maintenant",
+            //    "Activation de compte");
+
+        ecoleRepo.restaurerEcole(id);
+    }
 
     public Ecole getEcoleById(Long id){return ecoleRepo.getEcoleById(id);}
 

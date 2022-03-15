@@ -62,7 +62,8 @@ public class EcoleContoller {
     @GetMapping("/restaurerEcole/{id}")
     @ResponseBody
     public void restaurerEcole (@PathVariable("id") Long id){
-        ecoleServiceImplements.restaurerEcole(id);}
+        ecoleServiceImplements.restaurerEcole(id);
+    }
 
     @GetMapping("/getEcoleById/{id}")
     public Ecole getEcoleById(@PathVariable("id") Long id){
