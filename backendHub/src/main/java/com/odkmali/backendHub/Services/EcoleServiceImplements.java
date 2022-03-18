@@ -63,7 +63,7 @@ public class EcoleServiceImplements implements EcoleService{
                         "Votre contrat est cours de verification, vous receverez un email après verification, MERCI de patientez......",
                         "Verification du contrat");
             }
-        }else{
+        }else {
             if(e.getEmail_ecole() != null){
                 if(e.getEtat() == Etat.actif){
                     emailSendServivce.envoyerEmail(e.getEmail_ecole(),
@@ -74,6 +74,15 @@ public class EcoleServiceImplements implements EcoleService{
                                     "\n" + "Votre mot de passe : "+ e.getPassword_ecole(),
                             "Compte activer");
                 }
+            }
+        }
+        if(e.getEmail_ecole() != null){
+            if(e.getEtat() == Etat.inactif){
+                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
+                        "Votre compte a été desactiver "+
+                                "\n"+"Votre contrat n'est pas conforme au règlement"+
+                                "\n"+ "MERCI de fournir un contrat valide",
+                        "Compte activer");
             }
         }
         return e;
