@@ -27,10 +27,30 @@ public class EcoleServiceImplements implements EcoleService{
 
     public List<Ecole> getAllEcole(){return ecoleRepo.getAllEcole();}
 
-    public void deleteEcole (Long id){ecoleRepo.deleteEcole(id);}
+    public void deleteEcole (Long id){
+        ecoleRepo.deleteEcole(id);
+    }
 
     public void restaurerEcole (Long id){
-        ecoleRepo.restaurerEcole(id);
+         ecoleRepo.restaurerEcole(id);
+         Ecole e = ecoleRepo.findById(id).get();
+        if(e.getEmail_ecole() != null){
+            if(e.getEtat() == Etat.actif){
+                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
+                        "Votre compte a été activer "+
+                                "\n" +
+                                "\n" +
+                                "\n" + "Vous pouvez acceder à la plateforme maintenant"+
+                                "\n"+
+                                "\n" +
+                                "\n" + "Votre identifiant : "+ e.getLogin_ecole() +
+                                "\n" + "Votre mot de passe : "+ e.getPassword_ecole() +
+                                "\n" +
+                                "\n" +
+                                "\n" + "MERCI DE VOTRE PATIENCE" ,
+                        "Compte activer");
+            }
+        }
     }
 
     public Ecole getEcoleById(Long id){return ecoleRepo.getEcoleById(id);}
@@ -60,31 +80,13 @@ public class EcoleServiceImplements implements EcoleService{
         if(e.getEmail_ecole() != null){
             if(e.getEtat() == Etat.attente){
                 emailSendServivce.envoyerEmail(e.getEmail_ecole(),
-                        "Votre contrat est cours de verification, vous receverez un email après verification, MERCI de patientez......",
-                        "Verification du contrat");
-            }
-        }else {
-            if(e.getEmail_ecole() != null){
-                if(e.getEtat() == Etat.actif){
-                    emailSendServivce.envoyerEmail(e.getEmail_ecole(),
-                            "Votre compte a été activer "+
-                                    "\n"+"Vous pouvez acceder à la plateforme maintenant"+
-                                    "\n"+ "MERCI DE VOTRE PATIENCE" +
-                                    "\n" + "Votre identifiant : "+ e.getLogin_ecole() +
-                                    "\n" + "Votre mot de passe : "+ e.getPassword_ecole(),
-                            "Compte activer");
-                }
+                        "Votre compte a été crée avec succès." + "\n"
+                                + "Le contrat est en cours de verification, vous receverez un email après verification."+"\n"+
+                                " MERCI de patientez...",
+                        "Creation de compte");
             }
         }
-        if(e.getEmail_ecole() != null){
-            if(e.getEtat() == Etat.inactif){
-                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
-                        "Votre compte a été desactiver "+
-                                "\n"+"Votre contrat n'est pas conforme au règlement"+
-                                "\n"+ "MERCI de fournir un contrat valide",
-                        "Compte activer");
-            }
-        }
+
         return e;
     }
 
