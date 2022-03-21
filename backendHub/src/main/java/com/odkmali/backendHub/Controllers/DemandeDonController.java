@@ -82,16 +82,17 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getDemandeDonAttente();
     }
 
+
     @GetMapping("/getDemandeAttenteEcole")
     @ResponseBody
     public List<DemandeDon> getDemandeDonEcoleAttente() {
         return demandeDonRepo.getDemandeDonEcoleAttente();
     }
 
-    @GetMapping("/getDemandeConfirmer")
+    @GetMapping("/getDemandeConfirmerEcole")
     @ResponseBody
     public List<DemandeDon> getDemandeConfirmer() {
-        return demandeDonServiceImplements.getDemandeConfirmer();
+        return demandeDonRepo.getDemandeConfirmerEcole();
     }
 
     @GetMapping("/getDemandeConfirmerUser")

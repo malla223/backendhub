@@ -35,12 +35,6 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         return demandeDonRepo.getDemandeDonAttente();
     }
 
-
-    public List<DemandeDon> getDemandeConfirmer() {
-        return demandeDonRepo.getDemandeConfirmer();
-    }
-
-
     public void confirmerDemande(Long id) {
         donRepo.demandeConfirmer(id);
         demandeDonRepo.confirmerDemandeDon(id);
