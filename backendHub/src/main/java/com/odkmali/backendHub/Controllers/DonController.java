@@ -2,6 +2,7 @@ package com.odkmali.backendHub.Controllers;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.odkmali.backendHub.SendEmail.EmailSendServivce;
 import com.odkmali.backendHub.Services.DonServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Don;
@@ -26,6 +27,8 @@ public class DonController {
     DonServiceImplements donServiceImplements;
     @Autowired
     DonRepo donRepo;
+    @Autowired
+    EmailSendServivce emailSendServivce;
 
     @PostMapping("/saveDon")
     public Don saveDon(@RequestParam("data") String don, @RequestParam("image")MultipartFile photo)
@@ -45,9 +48,15 @@ public class DonController {
 
     @GetMapping("/getDonConfirmer")
     @ResponseBody
-    @CrossOrigin("*")
     public List<Don> getAllDonConfirmer(){
         return donServiceImplements.getAllDonConfirmer();
+    }
+
+
+    @GetMapping("/getDonConfirmerPlateforme")
+    @ResponseBody
+    public List<Don> getAllDonConfirmerP(){
+        return donRepo.getAllDonConfirmerPlateforme();
     }
 
     @GetMapping("/getDonAttente")
@@ -83,11 +92,58 @@ public class DonController {
     @GetMapping("/annulerDon/{id}")
     public void annulerDon(@PathVariable("id") Long id){
         donServiceImplements.annulerDon(id);
+        Don d = donRepo.findById(id).get();
+        if(d.getUser().getEmail_user() != null){
+            if(d.getEtat() == Etat.inactif){
+                emailSendServivce.envoyerEmail(d.getUser().getEmail_user(),
+                        "Votre don a été annuler."+
+                                "\n"+
+                                "\n"+
+                                "RAISON : "+
+                                "\n"+
+                                "En difficulté d'être en possession de votre livre physique, votre don a été annuler."+
+                                "\n"+
+                                "\n"+
+                                "----INFO DON----"+
+                                "\n"+
+                                "\n"+
+                                "Libellé don : "+d.getLibelle_don()+"\n"+
+                                "Catégorie : " +d.getCategorie().getLibelle_cat()+"\n"+
+                                "Niveau : "+d.getNiveau().getLibelle_niveau()+"\n"+
+                                "\n"+
+                                "\n"+
+                                "En esperant plus de générosité de votre part, HUB SCOLAIRE vous dit MERCI.",
+                        "Don Annuler"
+                );
+            }
+        }
     }
 
     @GetMapping("/confirmerDon/{id}")
     public void confirmerDon(@PathVariable("id") Long id){
         donServiceImplements.confirmerDon(id);
+        Don d = donRepo.findById(id).get();
+        if(d.getUser().getEmail_user() != null){
+            if(d.getEtat() == Etat.confirmer){
+                emailSendServivce.envoyerEmail(d.getUser().getEmail_user(),
+                        "Votre don a été confirmer."+
+                        "\n"+
+                        "Elle est maintenant disponible sur la plateforme."+
+                        "\n"+
+                        "\n"+
+                        "----INFO DON----"+
+                        "\n"+
+                                "\n"+
+                        "Libellé don : "+d.getLibelle_don()+"\n"+
+                        "Catégorie : " +d.getCategorie().getLibelle_cat()+"\n"+
+                        "Niveau : "+d.getNiveau().getLibelle_niveau()+"\n"+
+                                "\n"+
+                                "\n"+
+                                "MERCI de votre générosité.",
+                        "Don Confirmer"
+                        );
+            }
+        }
     }
 
     @GetMapping("/attenteDon/{id}")
