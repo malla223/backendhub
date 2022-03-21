@@ -1,6 +1,9 @@
 package com.odkmali.backendHub.Controllers;
 
+import com.odkmali.backendHub.SendEmail.EmailSendServivce;
 import com.odkmali.backendHub.Services.DemandeDonServiceImplements;
+import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.enumeration.TypeUser;
 import com.odkmali.backendHub.model.DemandeDon;
 import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.model.User;
@@ -19,11 +22,58 @@ public class DemandeDonController {
     DemandeDonServiceImplements demandeDonServiceImplements;
     @Autowired
     DemandeDonRepo demandeDonRepo;
+    @Autowired
+    EmailSendServivce emailSendServivce;
+
+    @PostMapping("/demandeDonE")
+    @ResponseBody
+    public DemandeDon demandeEcole(@RequestBody DemandeDon demandeDon){
+        demandeDonServiceImplements.faireDemande(demandeDon);
+        if(demandeDon.getEcole().getType() == TypeUser.ecole){
+            if(demandeDon.getEcole().getEmail_ecole() != null){
+                if(demandeDon.getEtat() == Etat.attente){
+                    emailSendServivce.envoyerEmail(demandeDon.getEcole().getEmail_ecole(),
+                            "Votre demande de don a été éffectué avec succès"+
+                                    "\n" +
+                                    "\n" +
+                                    "\n" + "Votre demande est placé sur une liste d'attente."+
+                                    "\n"+
+                                    "\n" +
+                                    "Si dans cinq (5) jours vous n'avez pas été contacter, considerez que le don a été attribué à un autre utilisateur."+
+                                    "\n" +
+                                    "\n" +
+                                    "\n" + "MERCI DE VOTRE COMPREHENSION." ,
+                            "Demande de don");
+                }
+            }
+        }
+        return  demandeDon;
+    }
+
 
     @PostMapping("/demandeDon")
     @ResponseBody
     public DemandeDon faireDemande(@RequestBody DemandeDon demandeDon) {
-        return demandeDonServiceImplements.faireDemande(demandeDon);
+        demandeDonServiceImplements.faireDemande(demandeDon);
+        if(demandeDon.getUser().getType() == TypeUser.user){
+            if(demandeDon.getUser().getEmail_user() != null){
+                if(demandeDon.getEtat() == Etat.attente){
+                    emailSendServivce.envoyerEmail(demandeDon.getUser().getEmail_user(),
+                            "Votre demande de don a été éffectué avec succès"+
+                                    "\n" +
+                                    "\n" +
+                                    "\n" + "Votre demande est placé sur une liste d'attente."+
+                                    "\n"+
+                                    "\n" +
+                                    "Si dans cinq (5) jours vous n'avez pas été contacter, considerez que le don a été attribué à un autre utilisateur."+
+                                    "\n" +
+                                    "\n" +
+                                    "\n" + "MERCI DE VOTRE COMPREHENSION." ,
+                            "Demande de don");
+                }
+            }
+        }
+        return demandeDon;
     }
 
     @GetMapping("/getDemandeAttente")
@@ -56,9 +106,81 @@ public class DemandeDonController {
         return demandeDonServiceImplements.getAllDemandeDon();
     }
 
+    @GetMapping("/confirmerDonEcole/{id}")
+    public void confirmerDemandeEcole(@PathVariable("id") Long id){
+        demandeDonServiceImplements.confirmerDemande(id);
+        DemandeDon d = demandeDonRepo.findById(id).get();
+        if(d.getEcole().getEmail_ecole() != null){
+            if(d.getEtat() == Etat.confirmer){
+                emailSendServivce.envoyerEmail(d.getEcole().getEmail_ecole(),
+                        "Votre demande de don a été confirmer." +
+                                "\n"+
+                                "Votre don sera livré à votre établissement dans deux (2) jours."+
+                                "\n"+
+                                "\n"+
+                                "-------DETAILS ETABLISSEMENT-------"+
+                                "\n"+
+                                "Etablissement : "+ d.getEcole().getNom_ecole()+
+                                "\n"+
+                                "Contact établissement :"+d.getEcole().getTel_ecole()+
+                                "\n"+
+                                "\n"+
+                                "-------DETAIL DON-------"+
+                                "\n"+
+                                "Libéllé don : "+d.getDon().getLibelle_don()+
+                                "\n"+
+                                "Niveau : "+d.getDon().getNiveau().getLibelle_niveau()+
+                                "\n"+
+                                "Catégorie : "+d.getDon().getCategorie().getLibelle_cat()+
+                                "\n"+
+                                "\n"+
+                                "-------INFO PARENTS-------"+
+                                "\n"+
+                                "Nom complet du parent : "+d.getNom_parent()+
+                                "\n"+
+                                "Contact du parent : "+d.getTel_ecole()+
+                                "\n"+
+                                "\n"+
+                                "MERCI DE VOTRE PATIENCE","Demande Confirmer");
+            }
+        }
+    }
     @GetMapping("/confirmerD/{id}")
     public void confirmerDemande(@PathVariable("id") Long id) {
         demandeDonServiceImplements.confirmerDemande(id);
+        DemandeDon d = demandeDonRepo.findById(id).get();
+        if(d.getUser().getType() == TypeUser.user){
+            if(d.getUser().getEmail_user() != null){
+                if(d.getEtat() == Etat.confirmer){
+                    emailSendServivce.envoyerEmail(d.getUser().getEmail_user(),
+                            "Votre demande de don a été confirmer." +
+                                    "\n"+
+                                    "Votre don sera livré à votre établissement dans deux (2) jours."+
+                                    "\n"+
+                                    "\n"+
+                                    "-------DETAILS ETABLISSEMENT-------"+
+                                    "\n"+
+                                    "Etablissement : "+ d.getNom_ecole()+
+                                    "\n"+
+                                    "Contact établissement :"+d.getTel_ecole()+
+                                    "\n"+
+                                    "\n"+
+                                    "\n"+
+                                    "-------DETAILS DON-------"+
+                                    "\n"+
+                                    "Libéllé don : "+d.getDon().getLibelle_don()+
+                                    "\n"+
+                                    "Niveau : "+d.getDon().getNiveau().getLibelle_niveau()+
+                                    "\n"+
+                                    "Catégorie : "+d.getDon().getCategorie().getLibelle_cat()+
+                                    "\n"+
+                                    "\n"+
+                                    "\n"+
+                                    "MERCI DE VOTRE PATIENCE","Demande Confirmer");
+                }
+            }
+        }
+
     }
 
     @GetMapping("/annulerD/{id}")

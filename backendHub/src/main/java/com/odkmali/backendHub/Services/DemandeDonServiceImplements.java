@@ -23,7 +23,7 @@ public class DemandeDonServiceImplements implements DemandeDonService{
         Optional<DemandeDon> optionalDemandeDon = demandeDonRepo.findDemandeByDon(demandeDon.getUser(), demandeDon.getDon());
 
         if(optionalDemandeDon.isPresent()){
-            System.out.println("Vous pouvez pas faire la demande du meme don");
+            System.out.println("Vous pouvez pas faire la demande du même don");
         }else{
             demandeDonRepo.save(demandeDon);
         }
