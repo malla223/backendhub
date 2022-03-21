@@ -116,7 +116,7 @@ public class DemandeDonController {
                 emailSendServivce.envoyerEmail(d.getEcole().getEmail_ecole(),
                         "Votre demande de don a été confirmer." +
                                 "\n"+
-                                "Votre don sera livré à votre établissement dans deux (2) jours."+
+                                "Votre don sera livré dans deux (2) jours."+
                                 "\n"+
                                 "\n"+
                                 "-------DETAILS ETABLISSEMENT-------"+
@@ -139,13 +139,14 @@ public class DemandeDonController {
                                 "\n"+
                                 "Nom complet du parent : "+d.getNom_parent()+
                                 "\n"+
-                                "Contact du parent : "+d.getTel_ecole()+
+                                "Contact du parent : "+d.getTel_parent()+
                                 "\n"+
                                 "\n"+
-                                "MERCI DE VOTRE PATIENCE","Demande Confirmer");
+                                "MERCI DE VOTRE PATIENCE.","Demande Confirmer");
             }
         }
     }
+
     @GetMapping("/confirmerD/{id}")
     public void confirmerDemande(@PathVariable("id") Long id) {
         demandeDonServiceImplements.confirmerDemande(id);
@@ -177,7 +178,7 @@ public class DemandeDonController {
                                     "\n"+
                                     "\n"+
                                     "\n"+
-                                    "MERCI DE VOTRE PATIENCE","Demande Confirmer");
+                                    "MERCI DE VOTRE PATIENCE.","Demande Confirmer");
                 }
             }
         }
