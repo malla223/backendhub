@@ -6,42 +6,56 @@ import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 @Service
 public class EcoleServiceImplements implements EcoleService{
 
     @Autowired
     EcoleRepo ecoleRepo;
-   // @Autowired
-   // EmailSendServivce emailSendServivce;
+       @Autowired
+       EmailSendServivce emailSendServivce;
 
     public List<Ecole> getEcoleByEtat(Etat etat){return ecoleRepo.getEcoleByEtat(etat);}
 
     public List<Ecole> getAllEcole(){return ecoleRepo.getAllEcole();}
 
-    public void deleteEcole (Long id){ecoleRepo.deleteEcole(id);}
+    public void deleteEcole (Long id){
+        ecoleRepo.deleteEcole(id);
+    }
 
     public void restaurerEcole (Long id){
-       // Ecole ecole = new Ecole();
-       // emailSendServivce.envoyerEmail(ecole.getEmail_ecole(),
-           //     "Votre compte a été activer avec succès, vous pouvez vous connecter maintenant",
-            //    "Activation de compte");
-
-        ecoleRepo.restaurerEcole(id);
+         ecoleRepo.restaurerEcole(id);
+         Ecole e = ecoleRepo.findById(id).get();
+        if(e.getEmail_ecole() != null){
+            if(e.getEtat() == Etat.actif){
+                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
+                        "Votre compte a été activer "+
+                                "\n" +
+                                "\n" +
+                                "\n" + "Vous pouvez acceder à la plateforme maintenant"+
+                                "\n"+
+                                "\n" +
+                                "\n" + "Votre identifiant : "+ e.getLogin_ecole() +
+                                "\n" + "Votre mot de passe : "+ e.getPassword_ecole() +
+                                "\n" +
+                                "\n" +
+                                "\n" + "MERCI DE VOTRE PATIENCE" ,
+                        "Compte activer");
+            }
+        }
     }
 
     public Ecole getEcoleById(Long id){return ecoleRepo.getEcoleById(id);}
 
-    public Ecole saveEcole(Ecole ecole, MultipartFile contrat) throws IOException {
+    public Ecole saveEcole(Ecole ecole, MultipartFile contrat) throws AddressException, MessagingException, IOException {
         Optional<Ecole> optionalEcole = ecoleRepo.findEcole(ecole.getLogin_ecole());
         if(optionalEcole.isPresent()){
             System.out.println("Ce login est déjà designé a un ecole");
@@ -62,7 +76,18 @@ public class EcoleServiceImplements implements EcoleService{
         e.setContrat_ecole(ecole.getContrat_ecole());
         e.setAdresse_ecole(ecole.getAdresse_ecole());
         e.setEmail_ecole(ecole.getEmail_ecole());
-        return ecoleRepo.save(e);
+        ecoleRepo.save(e);
+        if(e.getEmail_ecole() != null){
+            if(e.getEtat() == Etat.attente){
+                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
+                        "Votre compte a été crée avec succès." + "\n"
+                                + "Le contrat est en cours de verification, vous receverez un email après verification."+"\n"+
+                                " MERCI de patientez...",
+                        "Creation de compte");
+            }
+        }
+
+        return e;
     }
 
     @Override

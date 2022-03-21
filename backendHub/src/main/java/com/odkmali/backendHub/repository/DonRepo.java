@@ -18,7 +18,7 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Query(value = " SELECT d FROM Don d WHERE d.etat=:etat ")
     public List<Don> getAllDonByEtat(@Param("etat") Etat etat);
 
-    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' ")
+    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' OR d.etat='demandeConfirmer'")
     public List<Don> getAllDonConfirmer();
 
     @Query(value = " SELECT d FROM Don d WHERE d.etat='attente' ")

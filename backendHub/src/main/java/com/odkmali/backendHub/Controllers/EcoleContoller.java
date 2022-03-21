@@ -1,5 +1,6 @@
 package com.odkmali.backendHub.Controllers;
 
+import com.odkmali.backendHub.SendEmail.EmailSendServivce;
 import com.odkmali.backendHub.Services.EcoleServiceImplements;
 import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Ecole;
@@ -21,6 +22,8 @@ public class EcoleContoller {
     EcoleServiceImplements   ecoleServiceImplements;
     @Autowired
     EcoleRepo ecoleRepo;
+    @Autowired
+    EmailSendServivce emailSendServivce;
 
     @PostMapping("/saveEcole")
     @ResponseBody
@@ -58,6 +61,23 @@ public class EcoleContoller {
     @DeleteMapping("/deleteEcole/{id}")
     public void deleteEcole (@PathVariable("id") Long id){
         ecoleServiceImplements.deleteEcole(id);}
+
+    @GetMapping("/inactiver/{id}")
+    public void inactiver (@PathVariable("id") Long id){
+        ecoleRepo.deleteEcole(id);
+        Ecole e = ecoleRepo.findById(id).get();
+        if(e.getEmail_ecole() != null){
+            if(e.getEtat() == Etat.inactif){
+                emailSendServivce.envoyerEmail(e.getEmail_ecole(),
+                        "Votre compte a été desactiver."+
+                                "\n"+
+                                "\n"+"Votre contrat n'est pas conforme au règlement."+
+                                "\n"+
+                                "\n"+ "MERCI de fournir un contrat valide.",
+                        "Compte Inactiver");
+            }
+        }
+    }
 
     @GetMapping("/restaurerEcole/{id}")
     @ResponseBody

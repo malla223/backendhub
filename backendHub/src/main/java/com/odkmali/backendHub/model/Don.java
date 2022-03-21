@@ -24,10 +24,7 @@ public class Don {
     private Niveau niveau;
     @NotNull
     private String photo_don;
-   // @ManyToOne
-    //private Ecole ecole;
-    //@ManyToOne
-    //private Eleve eleve;
+    private String storie;
     @ManyToOne
     private User user;
     @ManyToOne
