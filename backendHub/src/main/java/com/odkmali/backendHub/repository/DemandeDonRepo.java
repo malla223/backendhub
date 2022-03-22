@@ -24,19 +24,19 @@ public interface DemandeDonRepo extends JpaRepository<DemandeDon, Long> {
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='attente' AND nom_ecole=NULL")
     public List<DemandeDon> getDemandeDonEcoleAttente();
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user AND d.etat='attente'")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.user=:user AND d.etat='attente' ORDER BY d.date DESC")
     public List<DemandeDon> getDemandeDonByUser(@Param("user")User user);
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='attente'")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='attente' ORDER BY d.date DESC")
     public List<DemandeDon> getDemandeDonByEcole(@Param("ecole") Ecole ecole);
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='confirmer'")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.ecole=:ecole AND d.etat='confirmer' ORDER BY d.date DESC")
     public List<DemandeDon> getEleveByEcole(@Param("ecole")Ecole ecole);
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer' AND nom_ecole IS NULL")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer' AND nom_ecole IS NULL ORDER BY d.date DESC")
     public List<DemandeDon> getDemandeConfirmerEcole();
 
-    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer' AND nom_ecole IS NOT NULL")
+    @Query(value = "SELECT d FROM DemandeDon d WHERE d.etat='confirmer' AND nom_ecole IS NOT NULL ORDER BY d.date DESC")
     public List<DemandeDon> getDemandeConfirmerUser();
 
     @Query(value = "SELECT d FROM DemandeDon d WHERE d.id_demande=:id_demande")

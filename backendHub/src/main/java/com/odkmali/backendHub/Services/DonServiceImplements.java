@@ -62,6 +62,7 @@ public class DonServiceImplements implements DonService{
         d.setPhoto_don(don.getPhoto_don());
         d.setUser(don.getUser());
         d.setStorie(don.getStorie());
+        d.setDate(don.getDate());
         return donRepo.save(d);
     }
 

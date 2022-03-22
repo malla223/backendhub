@@ -134,6 +134,8 @@ public class DemandeDonController {
                                 "\n"+
                                 "Catégorie : "+d.getDon().getCategorie().getLibelle_cat()+
                                 "\n"+
+                                "Demande fait le : "+d.getDate()+
+                                "\n"+
                                 "\n"+
                                 "-------INFO PARENTS-------"+
                                 "\n"+
@@ -175,6 +177,8 @@ public class DemandeDonController {
                                     "Niveau : "+d.getDon().getNiveau().getLibelle_niveau()+
                                     "\n"+
                                     "Catégorie : "+d.getDon().getCategorie().getLibelle_cat()+
+                                    "\n"+
+                                    "Demande fait le : "+d.getDate()+
                                     "\n"+
                                     "\n"+
                                     "\n"+

@@ -23,7 +23,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
     @Query(value = " SELECT u FROM User u WHERE u.etat =:etat ")
     public List<User> getAllUserByEtat(@Param("etat") Etat etat);
 
-    @Query(value = " SELECT u FROM User u WHERE u.etat='actif' ")
+    @Query(value = " SELECT u FROM User u WHERE u.etat='actif' ORDER BY u.id_user DESC ")
     public List<User> getAllUser();
 
     @Query(value = " SELECT u FROM User u WHERE u.etat='actif' AND id_user=:id_user ")

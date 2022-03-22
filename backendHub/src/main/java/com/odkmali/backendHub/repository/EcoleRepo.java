@@ -28,10 +28,10 @@ public interface EcoleRepo extends JpaRepository <Ecole, Long>{
     @Query(value="SELECT e FROM Ecole e WHERE e.etat=:etat")
     public List <Ecole> getEcoleByEtat(@Param("etat") Etat etat);
 
-    @Query(value= "SELECT e FROM Ecole e WHERE e.etat='actif'")
+    @Query(value= "SELECT e FROM Ecole e WHERE e.etat='actif' ORDER BY e.id_ecole DESC")
     public List<Ecole> getAllEcole();
 
-    @Query(value= "SELECT e FROM Ecole e WHERE e.etat='attente'")
+    @Query(value= "SELECT e FROM Ecole e WHERE e.etat='attente' ORDER BY e.id_ecole DESC")
     public List<Ecole> getAllEcoleAttente();
 
     @Query(value="UPDATE Ecole SET etat='inactif' WHERE id_ecole=:id_ecole")

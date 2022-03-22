@@ -17,7 +17,7 @@ import java.util.Optional;
 @Repository
 public interface AdminRepo extends JpaRepository<Admin, Long> {
 
-    @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' ")
+    @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' ORDER BY a.id_admin DESC")
     public List<Admin> getAllAdmin();
 
     @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' AND a.id_admin=:id_admin")

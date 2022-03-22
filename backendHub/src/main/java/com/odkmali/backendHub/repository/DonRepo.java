@@ -18,10 +18,10 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Query(value = " SELECT d FROM Don d WHERE d.etat=:etat ")
     public List<Don> getAllDonByEtat(@Param("etat") Etat etat);
 
-    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' OR d.etat='demandeConfirmer'")
+    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' OR d.etat='demandeConfirmer' ORDER BY RAND()")
     public List<Don> getAllDonConfirmer();
 
-    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer'")
+    @Query(value = " SELECT d FROM Don d WHERE d.etat='confirmer' ORDER BY d.date DESC")
     public List<Don> getAllDonConfirmerPlateforme();
 
     @Query(value = " SELECT d FROM Don d WHERE d.etat='attente' ")
@@ -54,7 +54,7 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Modifying
     public void demandeConfirmer(@Param("id_don")Long id);
 
-    @Query(value = "SELECT d FROM Don d WHERE d.etat='attente' AND d.user=:user")
+    @Query(value = "SELECT d FROM Don d WHERE d.etat='attente' AND d.user=:user ORDER BY d.date DESC")
     public List<Don> getDonByUser(@Param("user")User user);
 
     @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='confirmer'")

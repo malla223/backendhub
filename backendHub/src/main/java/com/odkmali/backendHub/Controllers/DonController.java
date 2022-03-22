@@ -110,6 +110,7 @@ public class DonController {
                                 "Libellé don : "+d.getLibelle_don()+"\n"+
                                 "Catégorie : " +d.getCategorie().getLibelle_cat()+"\n"+
                                 "Niveau : "+d.getNiveau().getLibelle_niveau()+"\n"+
+                                "Fait le : "+d.getDate()+
                                 "\n"+
                                 "\n"+
                                 "En esperant plus de générosité de votre part, HUB SCOLAIRE vous dit MERCI.",
@@ -137,6 +138,7 @@ public class DonController {
                         "Libellé don : "+d.getLibelle_don()+"\n"+
                         "Catégorie : " +d.getCategorie().getLibelle_cat()+"\n"+
                         "Niveau : "+d.getNiveau().getLibelle_niveau()+"\n"+
+                                "Fait le : "+d.getDate()+
                                 "\n"+
                                 "\n"+
                                 "MERCI de votre générosité.",

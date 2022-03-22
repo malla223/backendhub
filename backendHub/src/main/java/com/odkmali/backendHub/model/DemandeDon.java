@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -31,6 +32,7 @@ public class DemandeDon {
     private Long tel_parent;
     @NotNull
     private Long tel_ecole;
+    private LocalDateTime date = LocalDateTime.now();
     @Enumerated(EnumType.STRING)
     private Etat etat = Etat.attente;
     @OneToOne

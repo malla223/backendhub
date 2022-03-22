@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +26,7 @@ public class Don {
     @NotNull
     private String photo_don;
     private String storie;
+    private LocalDateTime date = LocalDateTime.now();
     @ManyToOne
     private User user;
     @ManyToOne

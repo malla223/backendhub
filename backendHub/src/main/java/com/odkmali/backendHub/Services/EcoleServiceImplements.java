@@ -40,14 +40,14 @@ public class EcoleServiceImplements implements EcoleService{
                         "Votre compte a été activer "+
                                 "\n" +
                                 "\n" +
-                                "\n" + "Vous pouvez acceder à la plateforme maintenant"+
+                                "\n" + "Vous pouvez acceder à la plateforme maintenant."+
                                 "\n"+
                                 "\n" +
                                 "\n" + "Votre identifiant : "+ e.getLogin_ecole() +
                                 "\n" + "Votre mot de passe : "+ e.getPassword_ecole() +
                                 "\n" +
                                 "\n" +
-                                "\n" + "MERCI DE VOTRE PATIENCE" ,
+                                "\n" + "MERCI DE VOTRE PATIENCE." ,
                         "Compte activer");
             }
         }
