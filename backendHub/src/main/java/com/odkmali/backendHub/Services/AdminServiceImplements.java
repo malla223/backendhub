@@ -29,6 +29,9 @@ public class AdminServiceImplements implements AdminService{
     }
 
     @Override
+    public List<Admin> getAllAdminInactif() {return  adminRepo.getAllAdminInactif();}
+
+    @Override
     public Admin getAdminById(Long id) {
         return adminRepo.findById(id).get();
     }

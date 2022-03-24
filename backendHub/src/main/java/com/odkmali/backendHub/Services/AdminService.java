@@ -14,6 +14,7 @@ import java.util.List;
 public interface AdminService {
 
     public List<Admin> getAllAdmin();
+    public List<Admin> getAllAdminInactif();
     public Admin getAdminById(Long id);
     public List<Admin> getAdminByEtat(Etat etat);
     public List<Admin> getAdminByType(AdminEnum type);

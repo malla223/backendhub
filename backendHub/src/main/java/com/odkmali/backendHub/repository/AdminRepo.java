@@ -20,6 +20,9 @@ public interface AdminRepo extends JpaRepository<Admin, Long> {
     @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' ORDER BY a.id_admin DESC")
     public List<Admin> getAllAdmin();
 
+    @Query(value="SELECT a FROM Admin a WHERE a.etat='inactif' ")
+    public List<Admin> getAllAdminInactif();
+
     @Query(value="SELECT a FROM Admin a WHERE a.etat='actif' AND a.id_admin=:id_admin")
     public Admin getAdminById (@Param("id_admin")Long id);
 

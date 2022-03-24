@@ -43,5 +43,4 @@ public class User {
     private TypeUser type = TypeUser.user;
     @Enumerated(EnumType.STRING)
     private Genre genre;
-
 }
