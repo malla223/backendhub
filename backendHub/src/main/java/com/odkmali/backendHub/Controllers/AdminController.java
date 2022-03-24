@@ -50,6 +50,12 @@ public class AdminController {
         return adminServiceImplements.getAllAdmin();
     }
 
+    @GetMapping("/getAllAdminInactif")
+    @ResponseBody
+    public List<Admin> getAllAdminInactif() {
+        return adminServiceImplements.getAllAdminInactif();
+    }
+
     @GetMapping("/getAdminById/{id}")
     public Admin getAdminById(@PathVariable("id") Long id) {
         return adminServiceImplements.getAdminById(id);
