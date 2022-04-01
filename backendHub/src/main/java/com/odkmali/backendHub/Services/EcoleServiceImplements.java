@@ -3,6 +3,7 @@ package com.odkmali.backendHub.Services;
 
 import com.odkmali.backendHub.SendEmail.EmailSendServivce;
 import com.odkmali.backendHub.enumeration.Etat;
+import com.odkmali.backendHub.model.Don;
 import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,5 +98,13 @@ public class EcoleServiceImplements implements EcoleService{
     @Override
     public Ecole authEcole(String login, String password) {
         return ecoleRepo.getEcoleByLoginAndPassword(login, password);
+    }
+
+    public byte[] getPdf(Long id) throws IOException {
+        Ecole e = ecoleRepo.getById(id);
+        String iconPhoto = e.getContrat_ecole();
+        File file = new File ("src/main/resources/Contrat/Ecole"+e.getId_ecole()+"/"+ iconPhoto);
+        Path path = Paths.get(file.toURI());
+        return Files.readAllBytes(path);
     }
 }

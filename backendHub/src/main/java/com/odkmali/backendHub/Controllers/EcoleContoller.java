@@ -7,10 +7,11 @@ import com.odkmali.backendHub.model.Ecole;
 import com.odkmali.backendHub.modelPhoto.FileUploadUtil;
 import com.odkmali.backendHub.repository.EcoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -97,5 +98,10 @@ public class EcoleContoller {
     @GetMapping("/auth/{login}/{password}")
     public Ecole authUser(@PathVariable String login, @PathVariable String password) {
         return ecoleServiceImplements.authEcole(login, password);
+    }
+
+    @GetMapping(value = "/getPdf/{id}", produces = { MediaType.APPLICATION_PDF_VALUE})
+    public byte[] getPdf(@PathVariable("id") Long id) throws IOException {
+        return ecoleServiceImplements.getPdf(id);
     }
 }

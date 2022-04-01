@@ -34,7 +34,7 @@ public interface DonRepo extends JpaRepository<Don, Long> {
     @Modifying
     public void attenteDon(@Param("id_don")Long id);
 
-    @Query(value = " UPDATE Don SET etat='confirmer' WHERE id_don=:id_don")
+    @Query(value = " UPDATE Don SET etat='confirmer', notifi='lu' WHERE id_don=:id_don")
     @Modifying
     public void confirmerDon(@Param("id_don")Long id);
 
@@ -62,6 +62,9 @@ public interface DonRepo extends JpaRepository<Don, Long> {
 
     @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='attente'")
     Integer nbreDonAttente();
+
+    @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='attente' AND notifi='nomLu'")
+    Integer nbreDonAttenteNotif();
 
     @Query(value = "SELECT COUNT (*) FROM Don WHERE etat='attente' AND user=:user")
     Integer nombreDonAttenteByUser(@Param("user") User user);

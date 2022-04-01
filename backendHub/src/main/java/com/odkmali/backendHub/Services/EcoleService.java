@@ -22,4 +22,5 @@ public interface EcoleService {
     public Ecole saveEcole(Ecole ecole, MultipartFile contrat) throws AddressException, MessagingException, IOException;
     public Ecole modifierEcole(Long id , Ecole ecole);
     Ecole authEcole(String login, String password);
+    public byte[] getPdf(Long id) throws IOException;
 }

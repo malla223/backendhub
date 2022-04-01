@@ -184,6 +184,11 @@ public class DonController {
         return donServiceImplements.nbreDonA();
     }
 
+    @GetMapping("/nbreNotif")
+    public Integer nbreNotif() {
+        return donRepo.nbreDonAttenteNotif();
+    }
+
     @GetMapping("/nbreDonAttente/{user}")
     public Integer nbreDonAttenteUser(@PathVariable("user") User user) {
         return donRepo.nombreDonAttenteByUser(user);
