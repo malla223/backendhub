@@ -153,7 +153,6 @@ public class DemandeDonController {
     public void confirmerDemande(@PathVariable("id") Long id) {
         demandeDonServiceImplements.confirmerDemande(id);
         DemandeDon d = demandeDonRepo.findById(id).get();
-        if(d.getEtat() == Etat.confirmer){
         if(d.getUser().getType() == TypeUser.user){
             if(d.getUser().getEmail_user() != null){
                 if(d.getEtat() == Etat.confirmer){
