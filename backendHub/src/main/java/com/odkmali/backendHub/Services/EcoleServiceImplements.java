@@ -102,9 +102,13 @@ public class EcoleServiceImplements implements EcoleService{
 
     public byte[] getPdf(Long id) throws IOException {
         Ecole e = ecoleRepo.getById(id);
-        String iconPhoto = e.getContrat_ecole();
-        File file = new File ("src/main/resources/Contrat/Ecole"+e.getId_ecole()+"/"+ iconPhoto);
-        Path path = Paths.get(file.toURI());
+        String nomPdf = e.getContrat_ecole();
+        File file = new File ("D:/backend Hub/backendHub/src/main/resources/Contrat/Ecole/Ecole/"+ nomPdf);
+
+        Path path = Paths.get(file.getPath());
+        System.out.println("ECOLE FILE============"+nomPdf);
+        System.out.println("path1============"+file.getPath());
+        System.out.println("path============"+path);
         return Files.readAllBytes(path);
     }
 }

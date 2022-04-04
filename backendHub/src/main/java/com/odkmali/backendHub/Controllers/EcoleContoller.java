@@ -35,7 +35,7 @@ public class EcoleContoller {
         e.setContrat_ecole(fileName);
 
         Ecole saveEcole = ecoleServiceImplements.saveEcole(e, contrat);
-        String uploadDir = "src/main/resources/Contrat/Ecole/" +saveEcole.getId_ecole();
+        String uploadDir = "src/main/resources/Contrat/Ecole/" +saveEcole;
 
         FileUploadUtil.saveFile(uploadDir, fileName, contrat);
 
