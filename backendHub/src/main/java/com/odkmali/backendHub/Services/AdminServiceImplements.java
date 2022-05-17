@@ -5,6 +5,7 @@ import com.odkmali.backendHub.enumeration.Etat;
 import com.odkmali.backendHub.model.Admin;
 import com.odkmali.backendHub.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +25,7 @@ public class AdminServiceImplements implements AdminService{
     AdminRepo adminRepo;
 
     @Override
-    public List<Admin> getAllAdmin() {
+    public List<KafkaProperties.Admin> getAllAdmin() {
         return adminRepo.getAllAdmin();
     }
 
